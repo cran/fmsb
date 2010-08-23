@@ -1,6 +1,7 @@
 # Functions for the book "Practices of Medical and Health Data Analysis using R"
 # written by Minato Nakazawa, 2007-2010.
 # rev. 0.1, 29 Mar 2010
+# rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
