@@ -2,6 +2,7 @@
 # written by Minato Nakazawa, 2007-2010.
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
+# rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -243,9 +244,9 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
   yys <- yy
   for (j in 1:n) {
    if (is.na(df[i,j])) {
-    left <- ifelse(j>1,j-1,n-1)
+    left <- ifelse(j>1,j-1,n)
     while (is.na(df[i,left])) {
-     left <- ifelse(left>0,left-1,n-1)
+     left <- ifelse(left>1,left-1,n)
     }
     right <- ifelse(j<n,j+1,1)
     while (is.na(df[i,right])) {

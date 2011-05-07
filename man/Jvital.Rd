@@ -8,7 +8,7 @@
  rates, and so on.
 }
 \usage{ Jvital }
-\format{ A data frame with 108 observations on 16 variables.
+\format{ A data frame with 109 observations on 16 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{YEAR} \tab numeric \tab Year\cr
@@ -31,7 +31,7 @@
 }
 \details{
    Longitudinal vital statistics in Japan provided as national
-   official vital statitistics every year from 1899 to 2009,
+   official vital statitistics every year from 1899 to 2009 (2010 data in part),
    except for 1944-1946.
    
    \itemize{
