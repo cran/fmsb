@@ -31,7 +31,7 @@
 }
 \details{
    Longitudinal vital statistics in Japan provided as national
-   official vital statitistics every year from 1899 to 2009 (2010 data in part),
+   official vital statitistics every year from 1899 to 2010,
    except for 1944-1946.
    
    \itemize{

@@ -11,7 +11,6 @@
  \item{R2}{Nagelkerke's R squared.}
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
-\seealso{\link[Design]{lrm}}
 \examples{
  res <- glm(cbind(ncases,ncontrols) ~ agegp+alcgp+tobgp, data=esoph, family=binomial())
  summary(res)

@@ -1,0 +1,24 @@
+# NAMESPACE file of fmsb by Minato Nakazawa
+# last modified 11 December 2011
+
+export(SIQR,
+       truemedian,
+       geary.test,
+       gstem,
+       riskratio,
+       oddsratio,
+       Kappa.test,
+       roc,
+       CronbachAlpha,
+       NagelkerkeR2,
+       VIF,
+       percentile,
+       radarchart,
+       pvalueplot,
+       pairwise.fisher.test,
+       mhchart)
+
+# methods
+    
+S3method(print, roc)
+S3method(plot, roc)

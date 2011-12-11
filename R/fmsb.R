@@ -3,6 +3,7 @@
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
+# rev. 0.2.2, 11 Dec 2011, mhchart function was added.
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -197,7 +198,7 @@ NagelkerkeR2 <- function(rr) { # rr must be the result of lm/glm
 VIF <- function(X) { 1/(1-summary(X)$r.squared) }
 
 percentile <- function(dat) { # convert numeric vector into percentiles
- pt1 <- quantile(dat, probs=seq(0, 1, 0.01), type=7) # set minimum 0 percentile.
+ pt1 <- quantile(dat, probs=seq(0, 1, by=0.01), type=7) # set minimum 0 percentile.
  pt2 <- unique(as.data.frame(pt1), fromLast=TRUE)
  pt3 <- rownames(pt2)
  pt4 <- as.integer(strsplit(pt3, "%"))
@@ -324,4 +325,20 @@ pairwise.fisher.test <- function (x, n, p.adjust.method = p.adjust.methods, ...)
         p.adjust.method = p.adjust.method)
     class(ANS) <- "pairwise.htest"
     return(ANS)
+}
+
+mhchart <- function(LIST, XLIM=c(15,45), COL="black", FILL="white", BWD=1, ...) {
+# maternity history chart
+# inspired by Wood JW (1994) "Dynamics of Human Reproduction", Aldine de Gruyter, New York.
+ NN <- length(LIST)
+ BASE <- rep(0,NN)
+ names(BASE) <- names(LIST)
+ YPOS <- barplot(BASE, horiz=TRUE, xlim=XLIM, ...)
+ for (i in 1:NN) {
+  DAT <- LIST[[i]]
+  NX <- length(DAT)
+  rect(DAT[1:(NX-1)],YPOS[i]-0.5,DAT[2:NX],YPOS[i]+0.5,border=COL,col=FILL,lwd=BWD)
+ }
+ XSEG <- seq(XLIM[1], XLIM[2], by=5)[-1]
+ segments(XSEG,0,XSEG,YPOS[NN]+1,col="navy",lty=3)
 }
