@@ -1,3 +1,7 @@
+Changes to Version 0.2.4
+
+	added export entries for Japanese population dataframes in NAMESPACE file.
+
 Changes to Version 0.2.3
 
 	added 2010's Japanese population data in JASM and Jpop

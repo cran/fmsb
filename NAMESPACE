@@ -16,7 +16,11 @@ export(SIQR,
        radarchart,
        pvalueplot,
        pairwise.fisher.test,
-       mhchart)
+       mhchart,
+       JASM,
+       Jpop,
+       Jvital,
+       S60MPJ)
 
 # methods
     
