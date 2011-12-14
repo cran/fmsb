@@ -7,7 +7,7 @@
  results in Japan.
 }
 \usage{ Jpop }
-\format{ A data frame with 86 observations on 51 variables.
+\format{ A data frame with 86 observations on 53 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab Factor w/86 levels \tab Ages (years old, combined for 85+)\cr
@@ -61,6 +61,8 @@
   \code{[,49]} \tab \code{F2000} \tab numeric \tab Age specific population of females in 2000\cr
   \code{[,50]} \tab \code{M2005} \tab numeric \tab Age specific population of males in 2005\cr
   \code{[,51]} \tab \code{F2005} \tab numeric \tab Age specific population of females in 2005\cr
+  \code{[,52]} \tab \code{M2010} \tab numeric \tab Age specific population of males in 2010\cr
+  \code{[,53]} \tab \code{F2010} \tab numeric \tab Age specific population of females in 2010\cr
  }
 }
 \details{
@@ -69,8 +71,8 @@
    
    \itemize{
     \item \code{Age}: Ages, combined for 85+.
-    \item \code{M1888}-\code{M2005}: Age specific number of males' population in 1988-2005.
-    \item \code{F1888}-\code{F2005}: Age specific number of females' population in 1988-2005.
+    \item \code{M1888}-\code{M2010}: Age specific number of males' population in 1988-2010.
+    \item \code{F1888}-\code{F2010}: Age specific number of females' population in 1988-2010.
    }
 }
 \source{
@@ -78,6 +80,6 @@
  \url{http://www.stat.go.jp/english/data/chouki/02.htm}
 }
 \references{
-  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2005.
+  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2010.
 }
 \keyword{datasets}

@@ -5,13 +5,11 @@
 \description{
  The data gives the sex and age-class (by five) specific numbers of death
  in Showa 60 (S60 = 1985), Heisei 2 (H02 = 1990), Heisei 7 (H07 = 1995),
- Heisei 12 (H12 = 2000) and Heisei 17 (H17 = 2005) and corresponding
- populations.  The sex and age-class (by five) specific numbers of death
- in Heisei 22 (H22 = 2010) are also included, but corresponding populations
- not yet.
+ Heisei 12 (H12 = 2000), Heisei 17 (H17 = 2005) and Heisei 22 (H22 = 2010),
+ and corresponding populations.
 }
 \usage{ JASM }
-\format{ A data frame with 18 observations on 24 variables.
+\format{ A data frame with 18 observations on 26 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{AGECLASS} \tab Factor w/18 levels \tab Age class (years old)\cr
@@ -33,11 +31,13 @@
   \code{[,17]} \tab \code{H07MP} \tab numeric \tab Number of males' population by age classes in 1995\cr
   \code{[,18]} \tab \code{H12MP} \tab numeric \tab Number of males' population by age classes in 2000\cr
   \code{[,19]} \tab \code{H17MP} \tab numeric \tab Number of males' population by age classes in 2005\cr
-  \code{[,20]} \tab \code{S60FP} \tab numeric \tab Number of females' population by age classes in 1985\cr
-  \code{[,21]} \tab \code{H02FP} \tab numeric \tab Number of females' population by age classes in 1990\cr
-  \code{[,22]} \tab \code{H07FP} \tab numeric \tab Number of females' population by age classes in 1995\cr
-  \code{[,23]} \tab \code{H12FP} \tab numeric \tab Number of females' population by age classes in 2000\cr
-  \code{[,24]} \tab \code{H17FP} \tab numeric \tab Number of females' population by age classes in 2005\cr
+  \code{[,20]} \tab \code{H22MP} \tab numeric \tab Number of males' population by age classes in 2010\cr
+  \code{[,21]} \tab \code{S60FP} \tab numeric \tab Number of females' population by age classes in 1985\cr
+  \code{[,22]} \tab \code{H02FP} \tab numeric \tab Number of females' population by age classes in 1990\cr
+  \code{[,23]} \tab \code{H07FP} \tab numeric \tab Number of females' population by age classes in 1995\cr
+  \code{[,24]} \tab \code{H12FP} \tab numeric \tab Number of females' population by age classes in 2000\cr
+  \code{[,25]} \tab \code{H17FP} \tab numeric \tab Number of females' population by age classes in 2005\cr
+  \code{[,26]} \tab \code{H22FP} \tab numeric \tab Number of females' population by age classes in 2010\cr
  }
 
 }
@@ -50,14 +50,13 @@
     \item \code{S60MODEL}: Age class specific model population of Japan in 1985.
     \item \code{S60M}-\code{H22M}: Age class specific number of death of males in 1985-2010.
     \item \code{S60F}-\code{H22F}: Age class specific number of death of females in 1985-2010.
-    \item \code{S60MP}-\code{H17MP}: Age class specific number of males' population in 1985-2005.
-    \item \code{S60FP}-\code{H17FP}: Age class specific number of females' population in 1985-2005.
+    \item \code{S60MP}-\code{H22MP}: Age class specific number of males' population in 1985-2010.
+    \item \code{S60FP}-\code{H22FP}: Age class specific number of females' population in 1985-2010.
    }
 }
 \source{
  \url{http://www.stat.go.jp/data/nenkan/02.htm}
  \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
- \url{http://www.e-stat.go.jp/SG1/estat/Xlsdl.do?sinfid=000008874020} (for H22M and H22F)
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.

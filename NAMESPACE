@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 11 December 2011
+# last modified 14 December 2011
 
 export(SIQR,
        truemedian,
