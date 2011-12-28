@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 14 December 2011
+# last modified 28 December 2011
 
 export(SIQR,
        truemedian,
@@ -18,9 +18,33 @@ export(SIQR,
        pairwise.fisher.test,
        mhchart,
        JASM,
+       Jlife,
+       Jfert,
        Jpop,
+       Jpopl,
        Jvital,
-       S60MPJ)
+       S60MPJ,
+       GompertzMakeham,
+       fitGM,
+       Siler,
+       fitSiler,
+       Denny,
+       fitDenny,
+       CT,
+       fitCT,
+       Hadwiger,
+       fitHad,
+       lxtodx,
+       dxtolx,
+       qxtodx,
+       dxtoqx,
+       qxtomx,
+       mxtoqx,
+       qxtolx,
+       lxtoqx,
+       uxtoqx,
+       lifetable,
+       clifetable)
 
 # methods
     

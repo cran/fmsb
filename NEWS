@@ -1,3 +1,7 @@
+Changes to Version 0.3.0
+
+	added 3 dataframes as Jpopl, Jfert and Jlife and the demographic model functions as Siler, fitSiler, GompertzMakeham, fitGM, Denny, fitDenny, CT, fitCT, Hadwiger, fitHad, lxtodx, dxtolx, qxtodx, dxtoqx, qxtomx, mxtoqx, qxtolx, lxtoqx, uxtoqx, lifetable, clifetable.
+
 Changes to Version 0.2.4
 
 	added export entries for Japanese population dataframes in NAMESPACE file.
