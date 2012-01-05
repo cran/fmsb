@@ -10,9 +10,9 @@
  fitDenny(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead", ...)
 }
 \arguments{
- \item{a}{The parameter a of the Denny model, l(t)=1/(1+a*(t/(105-t))^3)+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t)).}
- \item{b}{The parameter b of the Denny model, l(t)=1/(1+a*(t/(105-t))^3)+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t)).}
- \item{c}{The parameter c of the Denny model, l(t)=1/(1+a*(t/(105-t))^3)+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t)).}
+ \item{a}{The parameter a of the Denny model, l(t)=1/(1+a*(t/(105-t))^3+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t))).}
+ \item{b}{The parameter b of the Denny model, l(t)=1/(1+a*(t/(105-t))^3+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t))).}
+ \item{c}{The parameter c of the Denny model, l(t)=1/(1+a*(t/(105-t))^3+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t))).}
  \item{t}{Age (vector OK) in years.  The t must be less than 105, otherwise the value by Denny() become 0.}
  \item{initialpar}{Initial value for the parameters to be estimated.  If not given, rep(0.1, 3) is used.}
  \item{data}{Actual vector of qx in the lifetable to be used to obtain the best-fit parameters of the Denny's model.  If the ages for qx are equal or elder than 105 years old, those will be ignored in fitting.}

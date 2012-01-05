@@ -1,6 +1,6 @@
 Package: fmsb
-Version: 0.3.0
-Date: 2011/12/28
+Version: 0.3.1
+Date: 2012/1/5
 Title: Functions for medical statistics book with some demographic data
 Author: Minato Nakazawa <minato-nakazawa@umin.net>
 Maintainer: Minato Nakazawa <minato-nakazawa@umin.net>
@@ -11,6 +11,6 @@ Description: Several utility functions for the book entitled
 	data and some demographic analysis related functions.
 License: GPL (>= 2)
 URL: http://phi.med.gunma-u.ac.jp/msb/
-Packaged: 2011-12-28 05:03:28 UTC; nminato
+Packaged: 2012-01-04 15:17:00 UTC; nminato
 Repository: CRAN
-Date/Publication: 2011-12-28 13:50:26
+Date/Publication: 2012-01-04 16:36:25

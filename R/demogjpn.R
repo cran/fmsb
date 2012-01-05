@@ -499,8 +499,9 @@ fitGM <- function(initialpar=c(0.01, 0.0003, 0.07), data, mode=1, Method="Nelder
 }
 
 Denny <- function(a ,b, c, t) { # for lx
- lx <- ifelse(t<105, 1/(1+a*(t/(105-t))^3)+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t)), 0)
- return(lx)
+ lx <- ifelse(t<105, 1/(1+a*(t/(105-t))^3+b*sqrt(exp(t/(105-t))-1)+c*(1-exp(-2*t))), 0)
+ lx <- ifelse(lx>1, 1, lx)
+ return(lx*100000)
 }
 
 fitDenny <- function(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead", ...) {
