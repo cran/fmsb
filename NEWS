@@ -1,3 +1,7 @@
+Changes to Version 0.3.2
+
+	fix the exceptional problem (add a option) of the function radarchart()
+
 Changes to Version 0.3.1
 
 	bug fix of the function Denny()

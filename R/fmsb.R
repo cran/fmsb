@@ -4,6 +4,7 @@
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
 # rev. 0.2.2, 11 Dec 2011, mhchart function was added.
+# rev. 0.3.2, 6 Feb 2012, fix the exceptional treatment of radarchart() for too many NA's
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -207,8 +208,8 @@ percentile <- function(dat) { # convert numeric vector into percentiles
 }
 
 radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1, 
- cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, ...) {
- if (!is.data.frame(df)) return()
+ cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, ...) {
+ if (!is.data.frame(df)) { cat("The data must be given as dataframe.\n"); return() }
  if ((n <- length(df))<3) return()
  if (maxmin==FALSE) { # when the dataframe does not include max and min as the top 2 rows.
   dfmax <- apply(df,2,max)
@@ -243,31 +244,44 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
  for (i in 3:series) {
   xxs <- xx
   yys <- yy
-  for (j in 1:n) {
-   if (is.na(df[i,j])) {
-    left <- ifelse(j>1,j-1,n)
-    while (is.na(df[i,left])) {
-     left <- ifelse(left>1,left-1,n)
-    }
-    right <- ifelse(j<n,j+1,1)
-    while (is.na(df[i,right])) {
-     right <- ifelse(right<n,right+1,1)
-    }
-    xxleft <- xx[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
-    yyleft <- yy[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
-    xxright <- xx[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
-    yyright <- yy[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
-    xxs[j] <- xx[j]*(yyleft*xxright-yyright*xxleft)/(yy[j]*(xxright-xxleft)-xx[j]*(yyright-yyleft))
-    yys[j] <- (yy[j]/xx[j])*xxs[j]
-   }
-   else {
-    xxs[j] <- xx[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
-    yys[j] <- yy[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
-   }
-  }
   scale <- 1/(seg+1)+(df[i,]-df[2,])/(df[1,]-df[2,])*seg/(seg+1)
-  polygon(xxs,yys,lty=pltys[i-2],lwd=plwds[i-2],border=pcols[i-2])
-  points(xx*scale,yy*scale,pch=ptys[i-2],col=pcols[i-2])
+  if (sum(!is.na(df[i,]))<3) { cat(sprintf("[DATA NOT ENOUGH] at %d\n%g\n",i,df[i,])) # for too many NA's (1.2.2012)
+  } else {
+   for (j in 1:n) {
+    if (is.na(df[i,j])) { # how to treat NA
+     if (na.itp) { # treat NA using interpolation
+      left <- ifelse(j>1,j-1,n)
+      while (is.na(df[i,left])) {
+       left <- ifelse(left>1,left-1,n)
+      }
+      right <- ifelse(j<n,j+1,1)
+      while (is.na(df[i,right])) {
+       right <- ifelse(right<n,right+1,1)
+      }
+      xxleft <- xx[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
+      yyleft <- yy[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
+      xxright <- xx[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
+      yyright <- yy[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
+      if (xxleft > xxright) {
+       xxtmp <- xxleft; yytmp <- yyleft;
+       xxleft <- xxright; yyleft <- yyright;
+       xxright <- xxtmp; yyright <- yytmp;
+      }
+      xxs[j] <- xx[j]*(yyleft*xxright-yyright*xxleft)/(yy[j]*(xxright-xxleft)-xx[j]*(yyright-yyleft))
+      yys[j] <- (yy[j]/xx[j])*xxs[j]
+     } else { # treat NA as zero (origin)
+      xxs[j] <- 0
+      yys[j] <- 0
+     }
+    }
+    else {
+     xxs[j] <- xx[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
+     yys[j] <- yy[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
+    }
+   }
+   polygon(xxs,yys,lty=pltys[i-2],lwd=plwds[i-2],border=pcols[i-2])
+   points(xx*scale,yy*scale,pch=ptys[i-2],col=pcols[i-2])
+  }
  }
 }
 

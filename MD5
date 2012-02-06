@@ -1,8 +1,8 @@
-a989caf67b4a922b9b9b44177ca9d9b1 *DESCRIPTION
+c6779b848eecc07ec32a82412bae7aca *DESCRIPTION
 a38ca203816d39008b973b1af9f69165 *NAMESPACE
-8de4c95309c93c7fde69ec854489b914 *NEWS
+7403f7bd15580c966198cfc7382b32f0 *NEWS
 01ef265a6893872665896ff0365f0c12 *R/demogjpn.R
-2fc08fa681bc7618963f4574a980bf67 *R/fmsb.R
+2f94de77723d00e6cc258db8e0daea07 *R/fmsb.R
 26f5b5804acde81318f74ee47706900d *man/CT.Rd
 f9b56f4eda4778fe756d5dda6a9c517f *man/CronbachAlpha.Rd
 576247eab8666e7b1f4588a2f4213698 *man/Denny.Rd
@@ -28,7 +28,7 @@ bf9e0382cd480c5b6f7056ac8918265e *man/mhchart.Rd
 ab389af81ffb0ca2a58e760c639ca991 *man/pairwisefisher.Rd
 7c61af9935aceb7ea2de1bff2784aa39 *man/percentile.Rd
 0e03b9f50ba16eac635b314f41fa0aac *man/pvalueplot.Rd
-99b40c744e8194b2afaa98691459c337 *man/radarchart.Rd
+3ae16f39d345f2299118d86215637520 *man/radarchart.Rd
 f4739eef2d5d1a1702cc6926a469336e *man/riskratio.Rd
 96c19c91fa27497ab33d077e619b7aa0 *man/roc.Rd
 de932097238f94a467c9f131ffd67317 *man/truemedian.Rd
