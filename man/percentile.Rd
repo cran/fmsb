@@ -11,7 +11,7 @@
 \value{
  A integer vector in [0,100].  Minimum value always becomes 0 and maximum always becomes 100.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  percentile(1:5)
  X <- runif(1000,10,20)

@@ -9,7 +9,7 @@
 \value{
  A variance inflation factor is returned.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  # the target multiple regression model
  res <- lm(Ozone ~ Wind+Temp+Solar.R, data=airquality)

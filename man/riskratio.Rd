@@ -19,7 +19,7 @@
  \item{conf.int}{A numeric vector of length 2 to give upper/lower limit of confidence intervals.}
  \item{p.value}{The significant probability of the result of null-hypothesis testing.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  res <- riskratio(5,10,90,90)
  str(res)

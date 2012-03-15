@@ -18,7 +18,7 @@
  \item{distance}{The numeric vector of distance between actual performance set and the worst performance.}
  \item{aucpiece}{The numeric vector of the pieces of areas under the curve.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[Epi]{ROC}}
 \examples{
  scores <- c(15,20,19,28,26,17,13,22,23,24)

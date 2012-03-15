@@ -14,7 +14,7 @@
 \value{
  No value is returned.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  Developing <- c(18,21,24,27,30,33.5,37)
  Hutterite <- c(23,25,27,29,31,33,35,37,39)

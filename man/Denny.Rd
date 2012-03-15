@@ -23,7 +23,7 @@
  Denny() returns model lx for the same length with t.
  fitDenny() returns the numeric vector of fitted parameters a, b, and c, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jlife}}
 \examples{
  res <- fitDenny(,qxtolx(Jlife$qx2005M))

@@ -12,7 +12,7 @@
 \value{
  A numeric vector of length 1, giving the semi-interquartile range.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  data <- rnorm(100,10,1)
  SIQR(data)

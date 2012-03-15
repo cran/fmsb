@@ -17,7 +17,7 @@
  An object of adjusted p-values for all possible comparisons of pairs with class pairwise.htest.
 }
 \seealso{pairwise.prop.test, p.adjust.methods}
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}.  The code of this function was provided by Dr. Shigenobu AOKI (Gunma Univ.).}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}.  The code of this function was provided by Dr. Shigenobu AOKI (Gunma Univ.).}
 \examples{
  pairwise.fisher.test(c(2,4,5), c(10,14,17), p.adjust.method="bonferroni")
  smoker <- c(2,1,7)

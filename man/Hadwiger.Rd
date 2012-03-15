@@ -21,7 +21,7 @@
  Hadwiger() returns model ASFR for ages from 15 to 54.
  fitHad() returns the numeric vector of fitted parameters a, b and c, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jfert}}
 \examples{
  res <- fitHad(,Jfert$ASFR2000)

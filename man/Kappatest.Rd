@@ -32,7 +32,7 @@
  Landis JR, Koch GG (1977) The measurement of observer agreement for categorical 
   data.  Biometrics, 33: 159-174.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[vcd]{Kappa}}
 \examples{
  res <- Kappa.test(matrix(c(20,10,5,15),2,2))

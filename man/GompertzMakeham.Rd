@@ -24,7 +24,7 @@
  GompertzMakeham() returns model qx for the same length with t, where u(x) is internally converted into qx.
  fitGM() returns the numeric vector of fitted parameters of A, B and C, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jlife}}
 \examples{
  res <- fitGM(,Jlife$qx2005M)

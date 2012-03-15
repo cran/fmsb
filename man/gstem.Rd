@@ -10,7 +10,7 @@
  \item{X}{A numeric vector.}
  \item{scale}{Parameter to control plot length of graph.  Default is 1.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  x <- rnorm(100,10,1)
  stem(x)

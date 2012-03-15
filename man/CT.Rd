@@ -20,7 +20,7 @@
  CT() returns model ASMFR for ages from 12 to 49.
  fitCT() returns the numeric vector of fitted parameters M and m, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://phi.med.gunma-u.ac.jp/}}
+\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jfert}}
 \examples{
  ASMFR <- c(0,0,0,Jfert$ASMFR2000[1:35]) # Jfert gives ASMFR for ages 15:54, so that it should be rearranged to 12:49
