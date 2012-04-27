@@ -12,7 +12,7 @@
 }
 \arguments{
  \item{df}{The data frame to be used to draw radarchart.  If maxmin is TRUE, this must include maximum values as row 1 and minimum values as row 2 for each variables, and actual data should be given as row 3 and lower rows.  The number of columns (variables) must be more than 2.}
- \item{axistype}{The type of axes, specified by any of 0:3.  0 means no axis label.  1 means center axis label only.  2 means around-the-chart label only.  3 means both center and around-the-chart labels (default 0).}
+ \item{axistype}{The type of axes, specified by any of 0:5.  0 means no axis label.  1 means center axis label only.  2 means around-the-chart label only.  3 means both center and around-the-chart labels.  4 is *.** format of 1, 5 is *.** format of 3.  Default is 0.}
  \item{seg}{The number of segments for each axis (default 4).}
  \item{pty}{A vector to specify point symbol: Default 16 (closed circle), if you don't plot data points, it should be 32.  This is repeatedly used for data series.}
  \item{pcol}{A vector of color codes for plot data: Default 1:8, which are repeatedly used.}

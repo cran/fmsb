@@ -5,6 +5,7 @@
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
 # rev. 0.2.2, 11 Dec 2011, mhchart function was added.
 # rev. 0.3.2, 6 Feb 2012, fix the exceptional treatment of radarchart() for too many NA's
+# rev. 0.3.4, 27 Apr 2012, add new axistype options of radarchart()
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -225,9 +226,10 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
  for (i in 0:seg) { # complementary guide lines, dotted navy line by default
   polygon(xx*(i+1)/(seg+1), yy*(i+1)/(seg+1), lty=cglty, lwd=cglwd, border=cglcol)
   if (axistype==1|axistype==3) text(-0.05,(i+1)/(seg+1),paste(i/seg*100,"(%)"),col=axislabcol)
+  if (axistype==4|axistype==5) text(-0.05,(i+1)/(seg+1),sprintf("%3.2f",i/seg),col=axislabcol)
  }
  arrows(xx/(seg+1),yy/(seg+1),xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
- if (axistype==2|axistype==3) { text(xx[1:n], yy[1:n], df[1,1:n], col=axislabcol) }
+ if (axistype==2|axistype==3|axistype==5) { text(xx[1:n], yy[1:n], df[1,1:n], col=axislabcol) }
  text(xx*1.2,yy*1.2,colnames(df))
  series <- length(df[[1]])
  if (length(pty) < (series-2)) { 
