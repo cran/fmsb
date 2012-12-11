@@ -3,10 +3,10 @@
 \alias{Jlife}
 \title{Completed lifetables in Japan.}
 \description{
- The qx column of the completed lifetables in Japan, from "1891-1898" to "2005", mostly every 5 years.
+ The qx column of the completed lifetables in Japan, from "1891-1898" to "2010", mostly every 5 years.
 }
 \usage{ Jlife }
-\format{ A data frame with 117 observations (NAs are filled for the ages with no survivors) on 39 variables.
+\format{ A data frame with 117 observations (NAs are filled for the ages with no survivors) on 41 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab integer \tab Ages of women\cr
@@ -48,21 +48,24 @@
   \code{[,37]} \tab \code{qx2000F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2000.\cr
   \code{[,38]} \tab \code{qx2005M} \tab numeric \tab qx of completed lifetable functions of Japanese men in 2005.\cr
   \code{[,39]} \tab \code{qx2005F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2005.\cr
+  \code{[,40]} \tab \code{qx2010M} \tab numeric \tab qx of completed lifetable functions of Japanese men in 2010.\cr
+  \code{[,41]} \tab \code{qx2010F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2010.\cr
  }
 }
 \details{
-   qx columns were cited from the completed life tables in Japan for the 1st to 20th one (7th one was not made, so that it is missing).
+   qx columns were cited from the completed life tables in Japan for the 1st to 21st one (7th one was not made, so that it is missing).
    
    \itemize{
     \item \code{Age}: Ages from 0 to 116.
-    \item \code{qx1895M}-\code{qx2005M}: qx of 1st to 20th completed lifetables for Japanese men.
-    \item \code{qx1895F}-\code{qx2005F}: qx of 1st to 20th completed lifetables for Japanese women.
+    \item \code{qx1895M}-\code{qx2010M}: qx of 1st to 21st completed lifetables for Japanese men.
+    \item \code{qx1895F}-\code{qx2010F}: qx of 1st to 21st completed lifetables for Japanese women.
    }
 }
 \source{
  \url{http://www.stat.go.jp/english/data/chouki/02.htm}
  \url{http://www.stat.go.jp/data/chouki/zuhyou/02-35.xls}
  \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/20th/index.html}
+ \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/21th/index.html}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Completed lifetables. / Ministry of Internal Affairs and Communications, Statistics Bureau: Historical Statistics of Japan.
