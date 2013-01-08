@@ -7,7 +7,7 @@
  rows indicate cases as series.
 }
 \usage{
- radarchart(df, axistype, seg, pty, pcol, plty, plwd, 
+ radarchart(df, axistype, seg, pty, pcol, plty, plwd, pdensity, pfcol,
  cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, ...)
 }
 \arguments{
@@ -18,6 +18,8 @@
  \item{pcol}{A vector of color codes for plot data: Default 1:8, which are repeatedly used.}
  \item{plty}{A vector of line types for plot data: Default 1:6, which are repeatedly used.}
  \item{plwd}{A vector of line widths for plot data: Default 1, which is repeatedly used.}
+ \item{pdensity}{A vector of filling density of polygons: Default NULL, which is repeatedly used.}
+ \item{pfcol}{A vector of color codes for filling polygons: Default NA, which is repeatedly usd.}
  \item{cglty}{Line type for radar grids: Default 3, which means dotted line.}
  \item{cglwd}{Line width for radar grids: Default 1, which means thinnest line.}
  \item{cglcol}{Line color for radar grids: Default "navy"}
@@ -51,7 +53,7 @@ dat <- data.frame(
 dat <- rbind(maxmin,dat)
 op <- par(mar=c(1,2,2,1),mfrow=c(2,2))
 radarchart(dat,axistype=1,seg=5,plty=1,title="(axis=1, 5 segments)")
-radarchart(dat,axistype=2,pcol=topo.colors(3),plty=1,title="(topo.colors, axis=2)")
+radarchart(dat,axistype=2,pcol=topo.colors(3),plty=1,pdensity=30,pfcol=topo.colors(3),title="(topo.colors, fill, axis=2)")
 radarchart(dat,axistype=3,pty=32,plty=1,axislabcol="grey",na.itp=FALSE,title="(no points, axis=3, na.itp=FALSE)")
 radarchart(dat,axistype=0,plwd=1:5,pcol=1,title="(use lty and lwd but b/w, axis=0)")
 par(op)

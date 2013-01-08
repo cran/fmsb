@@ -1,11 +1,12 @@
 # Functions for the book "Practices of Medical and Health Data Analysis using R"
-# written by Minato Nakazawa, 2007-2010.
+# written by Minato Nakazawa, 2007-2013.
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
 # rev. 0.2.2, 11 Dec 2011, mhchart function was added.
 # rev. 0.3.2, 6 Feb 2012, fix the exceptional treatment of radarchart() for too many NA's
 # rev. 0.3.4, 27 Apr 2012, add new axistype options of radarchart()
+# rev. 0.3.6, 8 Jan 2013, add new pdensity and pfcol options of radarchart()
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -208,7 +209,7 @@ percentile <- function(dat) { # convert numeric vector into percentiles
  return(datp)
 }
 
-radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1, 
+radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1, pdensity=NULL, pfcol=NA,
  cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, ...) {
  if (!is.data.frame(df)) { cat("The data must be given as dataframe.\n"); return() }
  if ((n <- length(df))<3) return()
@@ -237,11 +238,15 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
   pcols <- rep(pcol, series-2)
   pltys <- rep(plty, series-2)
   plwds <- rep(plwd, series-2)
+  pdensities <- rep(pdensity, series-2)
+  pfcols <- rep(pfcol, series-2)
  } else {
   ptys <- pty
   pcols <- pcol
   pltys <- plty
   plwds <- plwd
+  pdensities <- pdensity
+  pfcols <- pfcol
  }
  for (i in 3:series) {
   xxs <- xx
@@ -250,15 +255,15 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
   if (sum(!is.na(df[i,]))<3) { cat(sprintf("[DATA NOT ENOUGH] at %d\n%g\n",i,df[i,])) # for too many NA's (1.2.2012)
   } else {
    for (j in 1:n) {
-    if (is.na(df[i,j])) { # how to treat NA
+    if (is.na(df[i, j])) { # how to treat NA
      if (na.itp) { # treat NA using interpolation
-      left <- ifelse(j>1,j-1,n)
-      while (is.na(df[i,left])) {
-       left <- ifelse(left>1,left-1,n)
+      left <- ifelse(j>1, j-1, n)
+      while (is.na(df[i, left])) {
+       left <- ifelse(left>1, left-1, n)
       }
-      right <- ifelse(j<n,j+1,1)
-      while (is.na(df[i,right])) {
-       right <- ifelse(right<n,right+1,1)
+      right <- ifelse(j<n, j+1, 1)
+      while (is.na(df[i, right])) {
+       right <- ifelse(right<n, right+1, 1)
       }
       xxleft <- xx[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
       yyleft <- yy[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
@@ -277,12 +282,12 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
      }
     }
     else {
-     xxs[j] <- xx[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
-     yys[j] <- yy[j]*(1/(seg+1)+(df[i,j]-df[2,j])/(df[1,j]-df[2,j])*seg/(seg+1))
+     xxs[j] <- xx[j]*(1/(seg+1)+(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+1))
+     yys[j] <- yy[j]*(1/(seg+1)+(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+1))
     }
    }
-   polygon(xxs,yys,lty=pltys[i-2],lwd=plwds[i-2],border=pcols[i-2])
-   points(xx*scale,yy*scale,pch=ptys[i-2],col=pcols[i-2])
+   polygon(xxs, yys, lty=pltys[i-2], lwd=plwds[i-2], border=pcols[i-2], density=pdensities[i-2], col=pfcols[i-2])
+   points(xx*scale, yy*scale, pch=ptys[i-2], col=pcols[i-2])
   }
  }
 }

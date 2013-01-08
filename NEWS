@@ -1,3 +1,7 @@
+Changes to Version 0.3.6
+
+	add the new options in filling polygons (pdensity and pfcol) of radarchart(),
+
 Changes to Version 0.3.5
 
 	added 2010 complete life table qx (qx2010M and qx2010F) to the Jlife dataframe.
