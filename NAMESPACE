@@ -1,11 +1,14 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 28 December 2011
+# last modified 7 February 2013
 
 export(SIQR,
        truemedian,
        geary.test,
        gstem,
+       rateratio,
+       ratedifference,
        riskratio,
+       riskdifference,
        oddsratio,
        Kappa.test,
        roc,

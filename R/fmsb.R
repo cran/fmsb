@@ -7,6 +7,7 @@
 # rev. 0.3.2, 6 Feb 2012, fix the exceptional treatment of radarchart() for too many NA's
 # rev. 0.3.4, 27 Apr 2012, add new axistype options of radarchart()
 # rev. 0.3.6, 8 Jan 2013, add new pdensity and pfcol options of radarchart()
+# rev. 0.3.7, 7 Feb 2013, add a new centerzero option of radarchart()
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -45,6 +46,104 @@ gstem <- function (X, scale=1) {
  .stem.len <- length(.stem.out)
  plot(c(1,2), c(1,.stem.len), type="n", axes=FALSE, xlab="", ylab="")
  text(rep(1,.stem.len), .stem.len:1, .stem.out, pos=4)
+}
+
+ratedifference <- function(a, b, PT1, PT0, CRC=FALSE, conf.level=0.95) {
+ .M <- a+b
+ .T <- PT1+PT0
+ .IR1 <- a/PT1
+ .IR0 <- b/PT0
+ .IRT <- .M/.T
+ norm.pp <- qnorm(1-(1-conf.level)/2)
+ if (CRC) {
+  .IRC1 <- norm.pp*sqrt(a/(PT1*PT1))
+  .IRC0 <- norm.pp*sqrt(b/(PT0*PT0))
+  .IRCT <- norm.pp*sqrt(.M/(.T*.T))
+  .MAT <- matrix(c(a, b, .M, PT1, PT0, .T, .IR1, .IR0, .IRT, 
+   .IR1-.IRC1, .IR0-.IRC0, .IRT-.IRCT, .IR1+.IRC1, .IR0+.IRC0, .IRT+.IRCT), 3, 5)
+  colnames(.MAT) <- c("Cases","Person-time","Incidence rates","Lower CL","Upper CL")
+  rownames(.MAT) <- c("Exposed","Unexposed","Total")
+ } else {
+  .MAT <- matrix(c(a, b, .M, PT1, PT0, .T, .IR1, .IR0, .IRT), 3, 3)
+  colnames(.MAT) <- c("Cases","Person-time","Incidence rates")
+  rownames(.MAT) <- c("Exposed","Unexposed","Total")
+ }
+ class(.MAT) <- "table"
+ print(.MAT)
+ ESTIMATE <- .IR1-.IR0
+ .CHI <- ESTIMATE/sqrt(a/(PT1*PT1)+b/(PT0*PT0))
+ p.v <- 2*(1-pnorm(abs(.CHI)))
+ RDL <- ESTIMATE-norm.pp*sqrt(a/(PT1*PT1)+b/(PT0*PT0))
+ RDU <- ESTIMATE+norm.pp*sqrt(a/(PT1*PT1)+b/(PT0*PT0))
+ CINT <- c(RDL,RDU)
+ attr(CINT, "conf.level") <- conf.level
+ RVAL <- list(p.value=p.v, conf.int=CINT, estimate=ESTIMATE, 
+  method="Incidence rate difference and its significance probability (H0: The difference equals to zero)",
+  data.name=paste(deparse(substitute(a)), deparse(substitute(b)),
+   deparse(substitute(PT1)), deparse(substitute(PT0))))
+ class(RVAL) <- "htest"
+ return(RVAL)
+}
+
+rateratio <- function(a, b, PT1, PT0, conf.level=0.95) {
+ .M <- a+b
+ .T <- PT1+PT0
+ .MAT <- matrix(c(a, b, .M, PT1, PT0, .T), 3, 2)
+ colnames(.MAT) <- c("Cases","Person-time")
+ rownames(.MAT) <- c("Exposed","Unexposed","Total")
+ class(.MAT) <- "table"
+ print(.MAT)
+ ESTIMATE <- (a/PT1)/(b/PT0)
+ norm.pp <- qnorm(1-(1-conf.level)/2)
+ .CHI <- (a-(PT1/.T)*.M)/sqrt(.M*(PT1/.T)*(PT0/.T))
+ p.v <- 2*(1-pnorm(abs(.CHI)))
+ RRL <- ESTIMATE*exp(-norm.pp*sqrt(1/a+1/b))
+ RRU <- ESTIMATE*exp(norm.pp*sqrt(1/a+1/b))
+ CINT <- c(RRL,RRU)
+ attr(CINT, "conf.level") <- conf.level
+ RVAL <- list(p.value=p.v, conf.int=CINT, estimate=ESTIMATE, 
+  method="Incidence rate ratio estimate and its significance probability",
+  data.name=paste(deparse(substitute(a)), deparse(substitute(b)),
+   deparse(substitute(PT1)), deparse(substitute(PT0))))
+ class(RVAL) <- "htest"
+ return(RVAL)
+}
+
+riskdifference <- function(a, b, N1, N0, CRC=FALSE, conf.level=0.95) {
+ .M <- a+b
+ .T <- N1+N0
+ .R1 <- a/N1
+ .R0 <- b/N0
+ .RT <- .M/.T
+ norm.pp <- qnorm(1-(1-conf.level)/2)
+ if (CRC) {
+  .RC1 <- norm.pp*sqrt(a*(N1-a)/(N1^3))
+  .RC0 <- norm.pp*sqrt(b*(N0-b)/(N0^3))
+  .RCT <- norm.pp*sqrt(.M*(.T-.M)/(.T^3))
+  .MAT <- matrix(c(a, b, .M, N1, N0, .T, .R1, .R0, .RT, 
+   .R1-.RC1, .R0-.RC0, .RT-.RCT, .R1+.RC1, .R0+.RC0, .RT+.RCT), 3, 5)
+  colnames(.MAT) <- c("Cases","People at Risk","Risk","Lower CL","Upper CL")
+  rownames(.MAT) <- c("Exposed","Unexposed","Total")
+ } else {
+  .MAT <- matrix(c(a, b, .M, N1, N0, .T, .R1, .R0, .RT), 3, 3)
+  colnames(.MAT) <- c("Cases","People at risk","Incidence rates")
+  rownames(.MAT) <- c("Exposed","Unexposed","Total")
+ }
+ class(.MAT) <- "table"
+ print(.MAT)
+ ESTIMATE <- .R1-.R0
+ .CHI <- ESTIMATE/sqrt(a*(N1-a)/(N1^3)+b*(N0-b)/(N0^3))
+ p.v <- 2*(1-pnorm(abs(.CHI)))
+ RDL <- ESTIMATE-norm.pp*sqrt(a*(N1-a)/(N1^3)+b*(N0-b)/(N0^3))
+ RDU <- ESTIMATE+norm.pp*sqrt(a*(N1-a)/(N1^3)+b*(N0-b)/(N0^3))
+ CINT <- c(RDL,RDU)
+ attr(CINT, "conf.level") <- conf.level
+ RVAL <- list(p.value=p.v, conf.int=CINT, estimate=ESTIMATE, 
+  method="Risk difference and its significance probability (H0: The difference equals to zero)",
+  data.name=paste(deparse(substitute(a)), deparse(substitute(b)),
+   deparse(substitute(N1)), deparse(substitute(N0))))
+ class(RVAL) <- "htest"
+ return(RVAL)
 }
 
 riskratio <- function(X, Y, m1, m2, conf.level=0.95) {
@@ -210,7 +309,7 @@ percentile <- function(dat) { # convert numeric vector into percentiles
 }
 
 radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1, pdensity=NULL, pfcol=NA,
- cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, ...) {
+ cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, centerzero=FALSE, ...) {
  if (!is.data.frame(df)) { cat("The data must be given as dataframe.\n"); return() }
  if ((n <- length(df))<3) return()
  if (maxmin==FALSE) { # when the dataframe does not include max and min as the top 2 rows.
@@ -224,12 +323,18 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
  theta <- theta[1:n]
  xx <- cos(theta)
  yy <- sin(theta)
+ CGap <- ifelse(centerzero, 0, 1)
  for (i in 0:seg) { # complementary guide lines, dotted navy line by default
-  polygon(xx*(i+1)/(seg+1), yy*(i+1)/(seg+1), lty=cglty, lwd=cglwd, border=cglcol)
-  if (axistype==1|axistype==3) text(-0.05,(i+1)/(seg+1),paste(i/seg*100,"(%)"),col=axislabcol)
-  if (axistype==4|axistype==5) text(-0.05,(i+1)/(seg+1),sprintf("%3.2f",i/seg),col=axislabcol)
+  polygon(xx*(i+CGap)/(seg+CGap), yy*(i+CGap)/(seg+CGap), lty=cglty, lwd=cglwd, border=cglcol)
+  if (axistype==1|axistype==3) text(-0.05,(i+CGap)/(seg+CGap),paste(i/seg*100,"(%)"),col=axislabcol)
+  if (axistype==4|axistype==5) text(-0.05,(i+CGap)/(seg+CGap),sprintf("%3.2f",i/seg),col=axislabcol)
  }
- arrows(xx/(seg+1),yy/(seg+1),xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
+ if (centerzero) {
+  arrows(0,0,xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
+ }
+ else {
+  arrows(xx/(seg+CGap),yy/(seg+CGap),xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
+ }
  if (axistype==2|axistype==3|axistype==5) { text(xx[1:n], yy[1:n], df[1,1:n], col=axislabcol) }
  text(xx*1.2,yy*1.2,colnames(df))
  series <- length(df[[1]])
@@ -251,7 +356,7 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
  for (i in 3:series) {
   xxs <- xx
   yys <- yy
-  scale <- 1/(seg+1)+(df[i,]-df[2,])/(df[1,]-df[2,])*seg/(seg+1)
+  scale <- CGap/(seg+CGap)+(df[i,]-df[2,])/(df[1,]-df[2,])*seg/(seg+CGap)
   if (sum(!is.na(df[i,]))<3) { cat(sprintf("[DATA NOT ENOUGH] at %d\n%g\n",i,df[i,])) # for too many NA's (1.2.2012)
   } else {
    for (j in 1:n) {
@@ -265,10 +370,10 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
       while (is.na(df[i, right])) {
        right <- ifelse(right<n, right+1, 1)
       }
-      xxleft <- xx[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
-      yyleft <- yy[left]*(1/(seg+1)+(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+1))
-      xxright <- xx[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
-      yyright <- yy[right]*(1/(seg+1)+(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+1))
+      xxleft <- xx[left]*CGap/(seg+CGap)+xx[left]*(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+CGap)
+      yyleft <- yy[left]*CGap/(seg+CGap)+yy[left]*(df[i,left]-df[2,left])/(df[1,left]-df[2,left])*seg/(seg+CGap)
+      xxright <- xx[right]*CGap/(seg+CGap)+xx[right]*(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+CGap)
+      yyright <- yy[right]*CGap/(seg+CGap)+yy[right]*(df[i,right]-df[2,right])/(df[1,right]-df[2,right])*seg/(seg+CGap)
       if (xxleft > xxright) {
        xxtmp <- xxleft; yytmp <- yyleft;
        xxleft <- xxright; yyleft <- yyright;
@@ -282,8 +387,8 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
      }
     }
     else {
-     xxs[j] <- xx[j]*(1/(seg+1)+(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+1))
-     yys[j] <- yy[j]*(1/(seg+1)+(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+1))
+     xxs[j] <- xx[j]*CGap/(seg+CGap)+xx[j]*(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+CGap)
+     yys[j] <- yy[j]*CGap/(seg+CGap)+yy[j]*(df[i, j]-df[2, j])/(df[1, j]-df[2, j])*seg/(seg+CGap)
     }
    }
    polygon(xxs, yys, lty=pltys[i-2], lwd=plwds[i-2], border=pcols[i-2], density=pdensities[i-2], col=pfcols[i-2])

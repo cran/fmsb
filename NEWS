@@ -1,6 +1,11 @@
+Changes to Version 0.3.7
+
+	add the new option to setting minimus at center (centerzero) of radarchart().
+	add new functions to calculate risk difference, incidence rate difference and incidence rate ratio as riskdifference(), ratedifference(), and rateratio(), respectively.
+
 Changes to Version 0.3.6
 
-	add the new options in filling polygons (pdensity and pfcol) of radarchart(),
+	add the new options in filling polygons (pdensity and pfcol) of radarchart().
 
 Changes to Version 0.3.5
 

@@ -8,7 +8,7 @@
 }
 \usage{
  radarchart(df, axistype, seg, pty, pcol, plty, plwd, pdensity, pfcol,
- cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, ...)
+ cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, centerzero, ...)
 }
 \arguments{
  \item{df}{The data frame to be used to draw radarchart.  If maxmin is TRUE, this must include maximum values as row 1 and minimum values as row 2 for each variables, and actual data should be given as row 3 and lower rows.  The number of columns (variables) must be more than 2.}
@@ -27,6 +27,7 @@
  \item{title}{if any, title should be typed.}
  \item{maxmin}{Logical.  If true, data frame includes possible maximum values as row 1 and possible minimum values as row 2.  If false, the maximum and minimum values for each axis will be calculated as actual maximum and minimum of the data.  Default TRUE.}
  \item{na.itp}{Logical. If true, items with NA values are interpolated from nearest neighbor items and connect them.  If false, items with NA are treated as the origin (but not pointed, only connected with lines).  Default FALSE.}
+ \item{centerzero}{Logical. If true, this function draws charts with scaling originated from (0,0).  If false, charts originated from (1/segments).  Default FALSE.}
  \item{...}{Miscellaneous arguments to be given for plot.default().}
 }
 \value{
@@ -55,6 +56,6 @@ op <- par(mar=c(1,2,2,1),mfrow=c(2,2))
 radarchart(dat,axistype=1,seg=5,plty=1,title="(axis=1, 5 segments)")
 radarchart(dat,axistype=2,pcol=topo.colors(3),plty=1,pdensity=30,pfcol=topo.colors(3),title="(topo.colors, fill, axis=2)")
 radarchart(dat,axistype=3,pty=32,plty=1,axislabcol="grey",na.itp=FALSE,title="(no points, axis=3, na.itp=FALSE)")
-radarchart(dat,axistype=0,plwd=1:5,pcol=1,title="(use lty and lwd but b/w, axis=0)")
+radarchart(dat,axistype=0,plwd=1:5,pcol=1,centerzero=TRUE,title="(use lty and lwd but b/w, axis=0, centerzero=TRUE)")
 par(op)
 }
