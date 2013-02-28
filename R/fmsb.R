@@ -309,34 +309,41 @@ percentile <- function(dat) { # convert numeric vector into percentiles
 }
 
 radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1, pdensity=NULL, pfcol=NA,
- cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, centerzero=FALSE, ...) {
+ cglty=3, cglwd=1, cglcol="navy", axislabcol="blue", title="", maxmin=TRUE, na.itp=TRUE, centerzero=FALSE, 
+ vlabels=NULL, caxislabels=NULL, paxislabels=NULL, ...) {
  if (!is.data.frame(df)) { cat("The data must be given as dataframe.\n"); return() }
- if ((n <- length(df))<3) return()
+ if ((n <- length(df))<3) { cat("The number of variables must be 3 or more.\n"); return() }
  if (maxmin==FALSE) { # when the dataframe does not include max and min as the top 2 rows.
-  dfmax <- apply(df,2,max)
-  dfmin <- apply(df,2,min)
-  df <- rbind(dfmax,dfmin,df)
+  dfmax <- apply(df, 2, max)
+  dfmin <- apply(df, 2, min)
+  df <- rbind(dfmax, dfmin, df)
  }
- plot(c(-1.2,1.2), c(-1.2,1.2), type="n", frame.plot=FALSE, axes=FALSE, 
+ plot(c(-1.2, 1.2), c(-1.2, 1.2), type="n", frame.plot=FALSE, axes=FALSE, 
   xlab="", ylab="", main=title, asp=1, ...) # define x-y coordinates without any plot
- theta <- seq(90,450,length=n+1)*pi/180
+ theta <- seq(90, 450, length=n+1)*pi/180
  theta <- theta[1:n]
  xx <- cos(theta)
  yy <- sin(theta)
  CGap <- ifelse(centerzero, 0, 1)
  for (i in 0:seg) { # complementary guide lines, dotted navy line by default
   polygon(xx*(i+CGap)/(seg+CGap), yy*(i+CGap)/(seg+CGap), lty=cglty, lwd=cglwd, border=cglcol)
-  if (axistype==1|axistype==3) text(-0.05,(i+CGap)/(seg+CGap),paste(i/seg*100,"(%)"),col=axislabcol)
-  if (axistype==4|axistype==5) text(-0.05,(i+CGap)/(seg+CGap),sprintf("%3.2f",i/seg),col=axislabcol)
+  if (axistype==1|axistype==3) CAXISLABELS <- paste(i/seg*100,"(%)")
+  if (axistype==4|axistype==5) CAXISLABELS <- sprintf("%3.2f",i/seg)
+  if (!is.null(caxislabels)&(i<length(caxislabels))) CAXISLABELS <- caxislabels[i+1]
+  if (axistype==1|axistype==3|axistype==4|axistype==5) text(-0.05, (i+CGap)/(seg+CGap), CAXISLABELS, col=axislabcol)
  }
  if (centerzero) {
-  arrows(0,0,xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
+  arrows(0, 0, xx*1, yy*1, lwd=cglwd, lty=cglty, length=0, col=cglcol)
  }
  else {
-  arrows(xx/(seg+CGap),yy/(seg+CGap),xx*1,yy*1,lwd=cglwd,lty=cglty,length=0,col=cglcol)
+  arrows(xx/(seg+CGap), yy/(seg+CGap), xx*1, yy*1, lwd=cglwd, lty=cglty, length=0, col=cglcol)
  }
- if (axistype==2|axistype==3|axistype==5) { text(xx[1:n], yy[1:n], df[1,1:n], col=axislabcol) }
- text(xx*1.2,yy*1.2,colnames(df))
+ PAXISLABELS <- df[1,1:n]
+ if (!is.null(paxislabels)) PAXISLABELS <- paxislabels
+ if (axistype==2|axistype==3|axistype==5) { text(xx[1:n], yy[1:n], PAXISLABELS, col=axislabcol) }
+ VLABELS <- colnames(df)
+ if (!is.null(vlabels)) VLABELS <- vlabels
+ text(xx*1.2, yy*1.2, VLABELS)
  series <- length(df[[1]])
  if (length(pty) < (series-2)) { 
   ptys <- rep(pty, series-2)
