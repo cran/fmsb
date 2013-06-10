@@ -12,10 +12,10 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- x <- rnorm(100,10,1)
+ x <- rnorm(100, 10, 1)
  stem(x)
- stem(x,2)
+ stem(x, 2)
  layout(t(1:2))
  gstem(x)
- gstem(x,2)
+ gstem(x, 2)
 }

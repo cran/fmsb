@@ -19,7 +19,7 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
-pvalueplot(matrix(c(321,411,686-321,689-411),2,2),xrange=c(0.7,0.9))
-pvalueplot(matrix(c(4,386,4,1250),2,2),xrange=c(0.1,20),scale=10,plot.log=TRUE)
-pvalueplot(matrix(c(468,480,229,205),2,2),plot.OR=TRUE,xrange=c(0.7,1.0))
+pvalueplot(matrix(c(321, 411, 686-321, 689-411), 2, 2), xrange=c(0.7, 0.9))
+pvalueplot(matrix(c(4, 386, 4, 1250), 2, 2), xrange=c(0.1, 20), scale=10, plot.log=TRUE)
+pvalueplot(matrix(c(468, 480, 229, 205), 2, 2), plot.OR=TRUE, xrange=c(0.7, 1.0))
 }

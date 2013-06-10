@@ -23,6 +23,6 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- median(c(3,3,4,4,4))
- truemedian(c(3,3,4,4,4))
+ median(c(3, 3, 4, 4, 4))
+ truemedian(c(3, 3, 4, 4, 4))
 }

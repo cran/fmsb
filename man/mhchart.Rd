@@ -16,10 +16,10 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- Developing <- c(18,21,24,27,30,33.5,37)
- Hutterite <- c(23,25,27,29,31,33,35,37,39)
- Gainj <- c(27,31,35,39)
- Japan <- c(29,34)
+ Developing <- c(18, 21, 24, 27, 30, 33.5, 37)
+ Hutterite <- c(23, 25, 27, 29, 31, 33, 35, 37, 39)
+ Gainj <- c(27, 31, 35, 39)
+ Japan <- c(29, 34)
  x <- list(
   Developing=Developing,
   Hutterite=Hutterite,

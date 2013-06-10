@@ -21,8 +21,8 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[Epi]{ROC}}
 \examples{
- scores <- c(15,20,19,28,26,17,13,22,23,24)
- diagno <- c(0,0,0,1,1,1,0,1,1,1)
+ scores <- c(15, 20, 19, 28, 26, 17, 13, 22, 23, 24)
+ diagno <- c(0, 0, 0, 1, 1, 1, 0, 1, 1, 1)
  res <- roc(scores, diagno)
  print(res)
  plot(res)

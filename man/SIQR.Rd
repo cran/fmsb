@@ -14,11 +14,11 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- data <- rnorm(100,10,1)
+ data <- rnorm(100, 10, 1)
  SIQR(data)
  SIQR(data, 2)
  sd(data)
- idata <- sample(50:80,100,replace=TRUE)
+ idata <- sample(50:80, 100, replace=TRUE)
  SIQR(idata)
  SIQR(idata, 2)
  sd(idata)

@@ -23,11 +23,11 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jfert}}
 \examples{
- ASMFR <- c(0,0,0,Jfert$ASMFR2000[1:35]) # Jfert gives ASMFR for ages 15:54, so that it should be rearranged to 12:49
+ ASMFR <- c(0, 0, 0, Jfert$ASMFR2000[1:35]) # Jfert's ASMFR should be rearranged to 12:49
  res <- fitCT(,ASMFR)
  FLAG <- res[4]
  while (FLAG>0) {
-   res <- fitCT(res[1:2],ASMFR)
+   res <- fitCT(res[1:2], ASMFR)
    FLAG <- res[4]
  }
  print(res)

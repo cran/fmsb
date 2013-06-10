@@ -35,8 +35,8 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[vcd]{Kappa}}
 \examples{
- res <- Kappa.test(matrix(c(20,10,5,15),2,2))
+ res <- Kappa.test(matrix(c(20, 10, 5, 15), 2, 2))
  str(res)
  print(res)
- Kappa.test(c(1,1,3,1,1,2,1,2,1,1),c(2,1,3,1,3,2,1,3,3,3))
+ Kappa.test(c(1, 1, 3, 1, 1, 2, 1, 2, 1, 1), c(2, 1, 3, 1, 3, 2, 1, 3, 3, 3))
 }

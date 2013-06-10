@@ -21,7 +21,7 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- res <- riskratio(5,10,90,90)
+ res <- riskratio(5, 10, 90, 90)
  str(res)
  print(res)
 }

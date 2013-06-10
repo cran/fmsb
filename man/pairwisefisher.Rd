@@ -19,9 +19,9 @@
 \seealso{pairwise.prop.test, p.adjust.methods}
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}.  The code of this function was provided by Dr. Shigenobu AOKI (Gunma Univ.).}
 \examples{
- pairwise.fisher.test(c(2,4,5), c(10,14,17), p.adjust.method="bonferroni")
- smoker <- c(2,1,7)
- total <- c(11,14,10)
- names(total) <- c("A","B","C")
+ pairwise.fisher.test(c(2, 4, 5), c(10, 14, 17), p.adjust.method="bonferroni")
+ smoker <- c(2, 1, 7)
+ total <- c(11, 14, 10)
+ names(total) <- c("A", "B", "C")
  pairwise.fisher.test(smoker, total)
 }

@@ -25,7 +25,7 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- res <- ratedifference(136,1709,22050,127650,CRC=TRUE)
+ res <- ratedifference(136, 1709, 22050, 127650, CRC=TRUE)
  str(res)
  print(res)
 }

@@ -48,6 +48,7 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jlife}}
 \examples{
- lifetable(c(0.0087,0.00015,0.00019,0.00098,0.0013,0.0011,0.0014,0.0019,0.0029,0.0048,0.0071,0.011,0.019,0.028,0.041,0.072,0.11,0.19),class=5,mode=2)
+ lifetable(c(0.0087, 0.00015, 0.00019, 0.00098, 0.0013, 0.0011, 0.0014, 0.0019, 0.0029, 
+             0.0048, 0.0071, 0.011, 0.019, 0.028, 0.041, 0.072, 0.11, 0.19), class=5, mode=2)
  clifetable(Jlife$qx2000F)
 }

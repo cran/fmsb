@@ -21,7 +21,7 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- res <- oddsratio(5,10,85,80)
+ res <- oddsratio(5, 10, 85, 80)
  str(res)
  print(res)
 }

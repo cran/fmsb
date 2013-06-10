@@ -8,7 +8,7 @@
  rates, and so on.
 }
 \usage{ Jvital }
-\format{ A data frame with 109 observations on 16 variables.
+\format{ A data frame with 109 observations on 17 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{YEAR} \tab numeric \tab Year\cr
@@ -27,6 +27,7 @@
   \code{[,14]} \tab \code{ASMRM} \tab numeric \tab Age-standardized mortality rates of males in Japan\cr
   \code{[,15]} \tab \code{ASMRF} \tab numeric \tab Age-standardized mortality rates of females in Japan\cr
   \code{[,16]} \tab \code{PNMPLB} \tab numeric \tab Perinatal mortalities per live births of Japan\cr
+  \code{[,17]} \tab \code{MMR} \tab numeric \tab Maternal mortality rates per 100000 births in Japan\cr
  }
 }
 \details{
@@ -50,14 +51,19 @@
     \item \code{TFR}: Total fertility rate.  The sum of age-specific fertility rates, which is the number of births divided by the number of women's population for each age.
     \item \code{ASMRM}: Age-standardized mortality rate of males, per mid-year population 1000, where the standard population is the model population in 1985.
     \item \code{ASMRF}: Age-standardized mortality rate of females, per mid-year population 1000, where the standard population is the model population in 1985.
-    \item \code{PNMPLB}: Perinatal mortality per live birth.  [(Number of stillbirths after gestational age 28 weeks) + (Number of early neonatal deaths within a week after birth)] per 1000 live births.  This definition stood until 1994, but \code{PNMPLB} also includes values after 1995, for comparison.
+    \item \code{PNMPLB}: Perinatal mortality per live birth.  [(Number of stillbirths after gestational age 28 weeks) + (Number of early neonatal deaths within a week after birth)] per 1000 live births (Note: the denominator does not include stillbirths!).  This definition stood until 1994, but \code{PNMPLB} also includes values after 1995, for comparison.
+    \item \code{MMR}: Maternal mortality rate (actually ratio) per birth.  (Number of maternal deaths during pregnancy or postpartum periods within 42 days [90 days until 1978] after the delivery due to reproduction-related causes) / (Number of total births = live births + stillbirths)* 100,000.
    }
 }
 \source{
  \url{http://www.stat.go.jp/english/data/chouki/02.htm}
  \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
+ \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai10/toukei02.html}
+ \url{http://www.ipss.go.jp/p-info/e/psj2012/PSJ2012-05.xls}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.
+
+  National Institude for Population and Social Security Research: Table 5-28 of Population Statistics of Japan 2012.
 }
 \keyword{datasets}

@@ -31,7 +31,7 @@
  res <- fitSiler(,Jlife$qx2005M)
  FLAG <- res[7]
  while (FLAG>0) {
-   res <- fitSiler(res[1:5],Jlife$qx2005M)
+   res <- fitSiler(res[1:5], Jlife$qx2005M)
    FLAG <- res[7]
  }
  print(res)

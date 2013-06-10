@@ -14,6 +14,6 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  percentile(1:5)
- X <- runif(1000,10,20)
+ X <- runif(1000, 10, 20)
  percentile(X)
 }

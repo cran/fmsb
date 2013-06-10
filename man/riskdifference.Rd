@@ -25,7 +25,7 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
- res <- riskdifference(321,411,686,689,CRC=TRUE)
+ res <- riskdifference(321, 411, 686, 689, CRC=TRUE)
  str(res)
  print(res)
 }
