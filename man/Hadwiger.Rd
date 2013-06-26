@@ -22,6 +22,12 @@
  fitHad() returns the numeric vector of fitted parameters a, b and c, RMSE for those values, and the flag of convergence.
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\references{
+Chandola T, Coleman DA, Horns RW (1999) Recent European fertility patterns:
+fitting curves to 'distorted' distributions. Population Studies, 53(3): 317-329.
+
+\url{http://www.jstor.org/stable/2584702}
+}
 \seealso{\link[fmsb]{Jfert}}
 \examples{
  res <- fitHad(,Jfert$ASFR2000)

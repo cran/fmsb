@@ -22,6 +22,11 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jfert}}
+\references{
+Coale AJ, Trussell TJ (1978) Technical Note: Finding the Two Parameters That Specify a Model Schedule of Marital Fertility.  Population Index, 44(2): 203-213.
+
+\url{http://www.jstor.org/stable/2735537}
+}
 \examples{
  ASMFR <- c(0, 0, 0, Jfert$ASMFR2000[1:35]) # Jfert's ASMFR should be rearranged to 12:49
  res <- fitCT(,ASMFR)

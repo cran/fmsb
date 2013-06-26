@@ -1,3 +1,7 @@
+Changes to version 0.4.0
+
+  modify the function lifetable() to use ax
+
 Changes to Version 0.3.9
 
 	add a new variable MMR (maternal mortality rates) to the Jvital dataframe.

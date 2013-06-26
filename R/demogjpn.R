@@ -383,29 +383,55 @@ uxtoqx <- function(ux) {
 }
 
 # making lifetable from mx
-lifetable <- function(mx, class=5, mode=1) {
+lifetable <- function(mx, ns=NULL, class=5, mode=1) {
  nc <- length(mx)
  qx <- numeric(nc)
- if (mode==1) { qx <- mx/(1+mx/2) } # simple calculation
- else { # Greville's correction
-  for (i in 1:(nc-1)) {
-   qx[i] <- mx[i] / (1/class+mx[i]*(1/2+class/12*(mx[i]-(log(mx[i+1])-log(mx[i]))/class))) / class
-  }
-  qx[nc] <- mx[nc] / (1/class+mx[nc]*(1/2+class/12*mx[nc])) / class
+ if (mode>10) { mode <- mode %% 10; grev <- TRUE } else { grev <- FALSE }
+ if (is.null(ns)) {
+  n <- rep(class, nc)
+  ages <- c(0, cumsum(n)[1:(nc-1)])
+  if (mode %in% 4:5) { mode <- mode-2 }
  }
- dx <- numeric(nc)
- lx <- numeric(nc)
- Lx <- numeric(nc)
+ else {
+  n <- ns
+  ages <- c(0, cumsum(n)[1:(nc-1)])
+  if (mode %in% 2:3) { mode <- mode+2 }
+ }
+ if (mode==1) { ax <- c(rep(0.5, nc-1), 1/mx[nc])
+ } else if (mode==2) { ax <- c(0.1, rep(0.4, 4), rep(0.5, nc-6), 1/mx[nc])
+ } else if (mode==3) { ax <- c(0.3, rep(0.4, 4), rep(0.5, nc-6), 1/mx[nc])
+ } else if (mode==4) { ax <- c(0.1, 0.4, rep(0.5, nc-3), 1/mx[nc])
+ } else if (mode==5) { ax <- c(0.3, 0.4, rep(0.5, nc-3), 1/mx[nc])
+ } else if (mode==6) { ax <- ifelse(mx[1]<0.107,
+   c(0.045+2.684*mx[1], (1.651-2.816*mx[1])/4, rep(0.5, nc-3), 1/mx[nc]),
+   c(0.330, 1.352/4, rep(0.5, nc-3), 1/mx[nc])) # Males
+ } else { ax <- ifelse(mx[1]<0.107,
+   c(0.053+2.8*mx[1], (1.522-1.518*mx[1])/4, rep(0.5, nc-3), 1/mx[nc]),
+   c(0.350, 1.361/4, rep(0.5, nc-3), 1/mx[nc])) # Females
+ }
+ if (!grev) { 
+  qx <- n*mx/(1+n*(1-ax)*mx)
+  qx[nc] <- 1
+ } # simple calculation
+ else { # Greville's correction (ignoring ax)
+  for (i in 1:(nc-1)) {
+   qx[i] <- mx[i] / (1/n[1]+mx[i]*(1/2+n[i]/12*(mx[i]-(log(mx[i+1])-log(mx[i]))/n[i]))) / n[i]
+  }
+  qx[nc] <- 1
+ }
+ px <- dx <- lx <- Lx <- numeric(nc)
  lx[1] <- 100000
+ px <- 1-qx
  for (i in 1:(nc-1)) {
-  dx[i] <- lx[i]*qx[i]*class
+  dx[i] <- lx[i]*qx[i]
   lx[i+1] <- lx[i]-dx[i]
-  Lx[i] <- (lx[i]+lx[i+1])/2*class
+  Lx[i] <- n[i]*(lx[i+1]+ax[i]*dx[i])
  }
  dx[nc] <- lx[nc]
- Tx <- cumsum(Lx[nc:1])[nc:1]
+ Lx[nc] <- lx[nc]/mx[nc] # same as n[nc]*lx[nc] - n[nc]*(1-ax[nc])*dx[nc]
+ Tx <- rev(cumsum(rev(Lx)))
  ex <- Tx/lx
- return(data.frame(mx,qx,lx,dx,Lx,Tx,ex))
+ return(data.frame(ages,n,ax,mx,qx,px,lx,dx,Lx,Tx,ex))
 }
 
 # making lifetable from qx
@@ -420,7 +446,9 @@ clifetable <- function(qx) {
   lx[i+1] <- lx[i]-dx[i]
   Lx[i] <- (lx[i]+lx[i+1])/2
  }
- Tx <- cumsum(Lx[nc:1])[nc:1]
+ dx[nc] <- lx[nc]
+ Lx[nc] <- lx[nc]/2 # Wada (2006)
+ Tx <- rev(cumsum(rev(Lx)))
  ex <- Tx/lx
  return(data.frame(qx,lx,dx,Lx,Tx,ex))
 }

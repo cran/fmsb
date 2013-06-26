@@ -24,6 +24,11 @@
  fitDenny() returns the numeric vector of fitted parameters a, b, and c, RMSE for those values, and the flag of convergence.
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\references{
+ Denny C (1997) A model of the probability of survival from birth. Mathematical and Computer Modelling, 26: 69-78.
+ 
+\url{http://www.sciencedirect.com/science/article/pii/S0895717797001702}
+}
 \seealso{\link[fmsb]{Jlife}}
 \examples{
  res <- fitDenny(,qxtolx(Jlife$qx2005M))
