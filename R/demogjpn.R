@@ -402,12 +402,20 @@ lifetable <- function(mx, ns=NULL, class=5, mode=1) {
  } else if (mode==3) { ax <- c(0.3, rep(0.4, 4), rep(0.5, nc-6), 1/mx[nc])
  } else if (mode==4) { ax <- c(0.1, 0.4, rep(0.5, nc-3), 1/mx[nc])
  } else if (mode==5) { ax <- c(0.3, 0.4, rep(0.5, nc-3), 1/mx[nc])
- } else if (mode==6) { ax <- ifelse(mx[1]<0.107,
-   c(0.045+2.684*mx[1], (1.651-2.816*mx[1])/4, rep(0.5, nc-3), 1/mx[nc]),
-   c(0.330, 1.352/4, rep(0.5, nc-3), 1/mx[nc])) # Males
- } else { ax <- ifelse(mx[1]<0.107,
-   c(0.053+2.8*mx[1], (1.522-1.518*mx[1])/4, rep(0.5, nc-3), 1/mx[nc]),
-   c(0.350, 1.361/4, rep(0.5, nc-3), 1/mx[nc])) # Females
+ } else if (mode==6) { 
+   if (mx[1]<0.107) {
+     ax <- c(0.045+2.684*mx[1], (1.651-2.816*mx[1])/4, rep(0.5, nc-3), 1/mx[nc])
+   } else {
+     ax <- c(0.330, 1.352/4, rep(0.5, nc-3), 1/mx[nc])
+   } # Males
+ } else if (mode==7) {
+   if (mx[1]<0.107) {
+     ax <- c(0.053+2.8*mx[1], (1.522-1.518*mx[1])/4, rep(0.5, nc-3), 1/mx[nc])
+   } else {
+     ax <- c(0.350, 1.361/4, rep(0.5, nc-3), 1/mx[nc])
+   } # Females
+ } else {
+   ax <- c(rep(0.5, nc-1), 1/mx[nc]) # default is mode 1
  }
  if (!grev) { 
   qx <- n*mx/(1+n*(1-ax)*mx)
@@ -571,6 +579,63 @@ fitDenny <- function(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead",
  return(c(rDenny$par,rDenny$value,rDenny$convergence))
 }
 
+CM <- function(scale=0.8, a0=18, k=2) {
+# Coale and McNeil's model nupitiality schedule
+# Returned values will be the proportions ever married for ages 10-60.
+# Age-specific nupitiality model by Coale and McNeil, 1972.
+# G(a)=C*Gs((a-a0)/k)
+# C is scale factor, must less than 1. The proportion who eventually marry.
+# Thus 1-C represents non-marriage propotion for lifetime.
+# Gs(a) is standard ever-married schedule.
+# gs(x)=0.19465*exp(-0.174*(x-6.06)-exp(-0.288*(x-6.06)))
+# Gs(a)=integrate gs(x) from 0 to a
+# a0 is the age when nupitiality begins (about 1% have married)
+# k is how fast women marry after initial age a0
+# the mean age at marriage becomes a0+11.36*k
+# its variance becomes 43.34*k^2
+# Source: Preston SH et al. (2001) Demography, Blackwell, pp.203
+# This schedule may not fit for so-called "Dekichatta-Kon"
+  ages <- 10:60
+  gs <- function(x) {0.19465*exp(-0.174*(x-6.06)-exp(-0.288*(x-6.06)))}
+  GCem <- GCpm <- GCfm <- scale*sapply((ages-a0)/k, gs)
+  for (i in 2:length(ages)) {
+    GCpm[i] <- GCfm[i]*(1-GCem[i-1])
+    GCem[i] <- GCpm[i]+GCem[i-1] 
+  }
+  mu <- sum(ages*GCpm)
+  V <- sum((ages-mu)^2*GCpm)
+  return(list(g=GCfm, G=GCem, mu=mu, sigma=sqrt(V)))
+}
+
+fitCM <- function(initialpar=c(0.8, 18, 2), data, ages=10:60, mode=1, Method="Nelder-Mead", ...) {
+# data must be age specific probability of first marriage if mode==1,
+# otherwise proportion of ever married women for each age
+# length of data must be same as that of ages
+if (mode==1) {
+  fCM <- function(z, Dz=data, Mz=mode, Az=ages) {
+    # the target function to be optimized, the data must be given for ages from 12 to 49.
+    nc <- length(Dz)
+    Azz <- Az[1]:Az[nc]-9
+    mmz <- CM(z[1], z[2], z[3])$g[Azz]
+    res <- sum((Dz-mmz)^2)
+    RMSE <- sqrt(res/nc)
+    return(RMSE)
+  }
+} else {
+  fCM <- function(z, Dz=data, Mz=mode, Az=ages) {
+    # the target function to be optimized, the data must be given for ages from 12 to 49.
+    nc <- length(Dz)
+    Azz <- Az[1]:Az[nc]-9
+    mmz <- CM(z[1], z[2], z[3])$G[Azz]
+    res <- sum((Dz-mmz)^2)
+    RMSE <- sqrt(res/nc)
+    return(RMSE)
+  }
+}
+  rCM <- optim(initialpar, fCM, Dz=data, Mz=mode, Az=ages, method=Method, ...)
+  return(c(rCM$par, rCM$value, rCM$convergence))
+}
+
 CT <- function(M=1, m=0) {
 # Coale and Trussell model fertility schedule
 # Age-specific fertility model by Coale and Trussell, 1978.
@@ -620,3 +685,4 @@ fitHad <- function(initialpar=c(3.4, 2.5, 22.2), data, Method="Nelder-Mead", ...
  rHad <- optim(initialpar, fHad, gr=NULL, data, method=Method, ...)
  return(c(rHad$par, rHad$value, rHad$convergence))
 }
+

@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 7 February 2013
+# last modified 2 July 2013
 
 export(SIQR,
        truemedian,
@@ -33,6 +33,8 @@ export(SIQR,
        fitSiler,
        Denny,
        fitDenny,
+       CM,
+       fitCM,
        CT,
        fitCT,
        Hadwiger,
