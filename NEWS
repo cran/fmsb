@@ -1,11 +1,15 @@
+Changes to version 0.4.2
+
+	add the several vital statistics data in Japan for years 2011 and 2012 to the Jvital dataframe.
+
 Changes to version 0.4.1
 
-  bug fix of the function lifetable() for mode=6 and mode=7
-  add new functions CM() and fitCM(), which are the Coale and McNeil's model nupitiality.
+	bug fix of the function lifetable() for mode=6 and mode=7
+	add new functions CM() and fitCM(), which are the Coale and McNeil's model nupitiality.
 
 Changes to version 0.4.0
 
-  modify the function lifetable() to use ax
+	modify the function lifetable() to use ax
 
 Changes to Version 0.3.9
 
