@@ -8,6 +8,7 @@
 # rev. 0.3.4, 27 Apr 2012, add new axistype options of radarchart()
 # rev. 0.3.6, 8 Jan 2013, add new pdensity and pfcol options of radarchart()
 # rev. 0.3.7, 7 Feb 2013, add a new centerzero option of radarchart()
+# rev. 0.4.3, 27 January 2014, bug fix of pvalueplot().  Important!!
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -404,23 +405,29 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
  }
 }
 
-pvalueplot <- function(XTAB, plot.OR=FALSE, xrange=c(0.01,5), scale=1, plot.log=FALSE) {
+pvalueplot <- function(XTAB, plot.OR=FALSE, plot.log=FALSE, xrange=c(0.01,5)) {
 # XTAB must be 2x2 cross table.
 # ref. Rothman KJ (2002) Epidemiology: An introduction. Oxford Univ. Press
-.M <- apply(XTAB,1,sum)
-.N <- apply(XTAB,2,sum)
-.T <- sum(XTAB)
-if (plot.log) {
- .aa <- 1:(min(.M[1],.N[1])*scale)/scale
-} else {
- .aa <- 0:(min(.M[1],.N[1])*scale)/scale
-}
-RR <- (.aa/.M[1])/((.N[1]-.aa)/.M[2])
-chiRR <- (.aa-XTAB[1,1])/sqrt(.N[1]*.N[2]*.M[1]*.M[2]/(.T*.T*(.T-1)))
-OR <- (.aa/(.M[1]-.aa))/((.N[1]-.aa)/(.M[2]-.N[1]+.aa))
-chiOR <- (.aa-XTAB[1,1])/sqrt(.N[1]*.N[2]*.M[1]*.M[2]/(.T*.T*(.T-1)))
-if (plot.OR) { p <- (1-pnorm(abs(chiOR),0,1))*2 } else { p <- (1-pnorm(abs(chiRR),0,1))*2 }
-if (plot.OR) { if (plot.log) { plot(OR, p, type="l", xlim=xrange,log="x") } else { plot(OR, p, type="l", xlim=xrange) } } else { if (plot.log) { plot(RR, p, type="l", xlim=xrange,log="x") } else { plot(RR, p, type="l", xlim=xrange) } }
+# ref. Rothman KJ (2012) Epidemiology: An introduction. 2nd Ed.  Oxford Univ. Press
+# According to 2nd ed. p.156, p-value function must match with nested confidence intervals.
+# Limitation: p-values less than 0.0005 are not calculated.
+  x.a <- XTAB[1,1]
+  x.b <- XTAB[1,2]
+  x.c <- XTAB[2,1]
+  x.d <- XTAB[2,2]
+  x.N1 <- sum(XTAB[,1])
+  x.N0 <- sum(XTAB[,2])
+  cp <- c(1:9/1000, 1:9/100, 10:90/100, 0.9+1:9/100, 0.99+1:9/1000)
+  cpx <- c(cp, 1, rev(cp))
+  cpy <- c(cp/2, 0.5, 0.5+cp/2)
+  cRR <- exp(log(x.a*x.N0/x.b/x.N1)+qnorm(cpy)*sqrt(1/x.a-1/x.N1+1/x.b-1/x.N0))
+  cOR <- exp(log(x.a*x.d/x.b/x.c)+qnorm(cpy)*sqrt(1/x.a+1/x.b+1/x.c+1/x.d))
+  
+  if (plot.OR) { rval <- data.frame(OR=cOR, p.value=cpx) } else {
+    rval <- data.frame(RR=cRR, p.value=cpx) }
+  OpLog <- ifelse(plot.log, "x", "")
+  plot(rval, type="l", xlim=xrange, log=OpLog)  
+  return(rval)
 }
 
 pairwise.fisher.test <- function (x, n, p.adjust.method = p.adjust.methods, ...) 

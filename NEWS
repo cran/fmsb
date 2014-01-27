@@ -1,3 +1,7 @@
+Changes to version 0.4.3
+
+	bug fix of the function pvalueplot().
+
 Changes to version 0.4.2
 
 	add the several vital statistics data in Japan for years 2011 and 2012 to the Jvital dataframe.

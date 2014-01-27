@@ -1,8 +1,8 @@
-a7cd80d860c761180d9d9fa58a58a73d *DESCRIPTION
+81d906344d8516c7c029ab13784c0301 *DESCRIPTION
 e9460356a7fa30c8b8cea5ab26f5e6da *NAMESPACE
-d8e0eda9c8db93b75fede2c51fb4870c *NEWS
+d0e2a63478c29a26b65b6c7ae376f6d3 *NEWS
 24e19f21c2aaa8726703ab4ec25d375e *R/demogjpn.R
-de904e92131085240ad76d612eed4246 *R/fmsb.R
+313816798375dac5a452b33cbb306f76 *R/fmsb.R
 71866b215fce2ad705d5a93e5fe2e5ca *man/CM.Rd
 a46285392a814d5f0b1ddd5c909ee58b *man/CT.Rd
 8d34372d5c931d04e833ccd576a06f4c *man/CronbachAlpha.Rd
@@ -28,7 +28,7 @@ bb85b2dfdd1cc17e1067892f7bf2334f *man/mhchart.Rd
 323c88717cdd4d3c4168e08ace367c55 *man/oddsratio.Rd
 4d8479c358c9a4c84768ace79e7007e9 *man/pairwisefisher.Rd
 634390cba18b2d36953605173119b7b4 *man/percentile.Rd
-ae44d87c6b4ee3a4764544a872a9d08f *man/pvalueplot.Rd
+6a7206cb5ccaf78388f44aa55a548517 *man/pvalueplot.Rd
 503331b2fa60104521cb0a5a6064f98e *man/radarchart.Rd
 bfa03b46704d33dd30108bd45547ea8c *man/ratedifference.Rd
 bdc6b69c3a877a34df0d704bb5e57ea4 *man/rateratio.Rd
