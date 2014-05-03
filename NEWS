@@ -1,3 +1,7 @@
+Changes to version 0.4.4
+
+	bug fix of and adding one option pangle to the function radarchart().
+
 Changes to version 0.4.3
 
 	bug fix of the function pvalueplot().
