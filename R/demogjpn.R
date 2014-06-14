@@ -327,13 +327,15 @@ dxtoqx <- function(dx) {
  return(qx)
 }
 
-qxtomx <- function(qx) {
- mx <- qx/(1-qx/2)
+qxtomx <- function(qx, ax=0.5, n=1, mmax=NULL) {
+ mx <- qx/(n*(1-qx*(1-ax)))
+ if (!is.null(mmax)) { mx[length(mx)] <- mmax }
  return(mx)
 }
 
-mxtoqx <- function(mx) {
- qx <- mx/(1+mx/2)
+mxtoqx <- function(mx, ax=0.5, n=1) {
+ qx <- n*mx/(1+n*mx*(1-ax))
+ qx[length(qx)] <- 1
  return(qx)
 }
 
@@ -427,6 +429,29 @@ lifetable <- function(mx, ns=NULL, class=5, mode=1) {
   }
   qx[nc] <- 1
  }
+ px <- dx <- lx <- Lx <- numeric(nc)
+ lx[1] <- 100000
+ px <- 1-qx
+ for (i in 1:(nc-1)) {
+  dx[i] <- lx[i]*qx[i]
+  lx[i+1] <- lx[i]-dx[i]
+  Lx[i] <- n[i]*(lx[i+1]+ax[i]*dx[i])
+ }
+ dx[nc] <- lx[nc]
+ Lx[nc] <- lx[nc]/mx[nc] # same as n[nc]*lx[nc] - n[nc]*(1-ax[nc])*dx[nc]
+ Tx <- rev(cumsum(rev(Lx)))
+ ex <- Tx/lx
+ return(data.frame(ages,n,ax,mx,qx,px,lx,dx,Lx,Tx,ex))
+}
+
+# making lifetable from mx (pattern2)
+lifetable2 <- function(mx, ax=0.5, n=1) {
+ nc <- length(mx)
+ if (length(ax)==1) { ax <- rep(ax, nc) }
+ if (length(n)==1) { n <- rep(n, nc) }
+ qx <- mxtoqx(mx, ax, n)
+ ages <- c(0, cumsum(n)[1:(nc-1)])
+ qx[nc] <- 1
  px <- dx <- lx <- Lx <- numeric(nc)
  lx[1] <- 100000
  px <- 1-qx

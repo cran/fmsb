@@ -1,5 +1,6 @@
 \name{lifetable}
 \alias{lifetable}
+\alias{lifetable2}
 \alias{clifetable}
 \alias{lxtodx}
 \alias{dxtolx}
@@ -16,13 +17,14 @@
 }
 \usage{
  lifetable(mx, ns=NULL, class=5, mode=1)
+ lifetable2(mx, ax=0.5, n=1)
  clifetable(qx)
  lxtodx(lx)
  dxtolx(dx)
  qxtodx(qx)
  dxtoqx(dx)
- qxtomx(qx)
- mxtoqx(mx)
+ qxtomx(qx, ax=0.5, n=1, mmax=NULL)
+ mxtoqx(mx, ax=0.5, n=1)
  qxtolx(qx)
  lxtoqx(lx)
  uxtoqx(ux)
@@ -30,9 +32,12 @@
 \arguments{
  \item{mx}{Lifetable function mx, meaning the age (class)-specific death rates.}
  \item{ns}{If given as a vector with the same length as mx, the duration for each age (class). Default is NULL: same duration with class is automatically used.}
+ \item{n}{If given as a vector with the same length as mx or qx, the duration for each age (class).  Default is 1, which means the length for all age-classes being 1 year.}
  \item{class}{Age-class of lifetable() function.  Default is 5.}
  \item{mode}{How to set ax and correction method in conversion from mx to qx.  1 and 11: all ax is 0.5 except the open-ended class [where ax is reciprocal of mx], 2, 4, 12, 14: ax is 0.1 for age 0, 0.4 for age 1-4, 0.5 for the other ages except the open-ended class [where ax is reciprocal of mx], 3, 5, 13, 15: ax is 0.3 for age 0, 0.4 for age 1-4, 0.5 for the other ages except the open-ended class [where ax is reciprocal of mx], 6 and 16: Males value given in Preston SH (2001), pp.48 Table 3.3, 7 and 17: Females value given in Preston SH (2001), pp.48 Table 3.3.  If less than 10, simply calculating qx as n*mx/(1+n*(1-ax)*mx) except for the open-ended class where qx=1, otherwise calculating qx by Greville's method.  Default is 1.}
+ \item{ax}{Lifetable function ax, fraction of last year lived.  Default is 0.5 (scalar) for all classes.  It can be given as scalar or vector.}
  \item{qx}{Lifetable function qx, which means the probability of dying between age x and x+1 (for lifetable(), x+class).}
+ \item{mmax}{To calculate mx from qx, mx at the maximum open-ended age-class cannot be calculated from qx.  In such situation, mmax gives a value for it.  Default is NULL.}
  \item{lx}{Lifetable function lx, which means number of people left alive at age x from 100,000 newborns.}
  \item{dx}{Lifetable function dx, which means number of people dying between age x and x+1 (for lifetable(), x+class) from 100,000 newborns. Differentials of lx.}
  \item{ux}{The force of mortality.}
@@ -57,7 +62,12 @@
 }
 \seealso{\link[fmsb]{Jlife}}
 \examples{
- lifetable(c(0.0087, 0.00015, 0.00019, 0.00098, 0.0013, 0.0011, 0.0014, 0.0019, 0.0029, 
-             0.0048, 0.0071, 0.011, 0.019, 0.028, 0.041, 0.072, 0.11, 0.19), class=5, mode=11)
+ lifetable(c(0.0087, 0.00015, 0.00019, 0.00098, 0.0013, 0.0011, 0.0014, 0.0019, 
+             0.0029, 0.0048, 0.0071, 0.011, 0.019, 0.028, 0.041, 0.072, 0.11, 
+             0.19), class=5, mode=11)
+ lifetable2(c(0.008314, 0.000408, 0.000181, 0.000187, 0.000282, 0.000307, 0.000364, 
+              0.000566, 0.000884, 0.001445, 0.002485, 0.004210, 0.007219, 0.012054, 
+              0.018259, 0.029920, 0.049689, 0.085545, 0.177987), 
+              ax = c(0.1, 0.4, rep(0.5, 16), NA), n = c(1, 4, rep(5, 16), NA) )
  clifetable(Jlife$qx2000F)
 }

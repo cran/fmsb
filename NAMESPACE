@@ -49,6 +49,7 @@ export(SIQR,
        lxtoqx,
        uxtoqx,
        lifetable,
+       lifetable2,
        clifetable)
 
 # methods

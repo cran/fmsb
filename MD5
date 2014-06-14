@@ -1,7 +1,7 @@
-ff43b119e9fe107b18eacd426faab4d6 *DESCRIPTION
-e9460356a7fa30c8b8cea5ab26f5e6da *NAMESPACE
-975cd988689d856b57dae6ded123da62 *NEWS
-24e19f21c2aaa8726703ab4ec25d375e *R/demogjpn.R
+01a507b14fd3ebae2679ac87d38f0e05 *DESCRIPTION
+b4ed9891d98320a5ec6095ed2fa56e6c *NAMESPACE
+4542c177811702664e712661d6c37f91 *NEWS
+209d08ee5c5e63d132c2674dcb0967f4 *R/demogjpn.R
 61187766cbaab854b1e902516573ac3e *R/fmsb.R
 71866b215fce2ad705d5a93e5fe2e5ca *man/CM.Rd
 a46285392a814d5f0b1ddd5c909ee58b *man/CT.Rd
@@ -23,7 +23,7 @@ e7ec84a1e0f7ed452ce8628af66529f7 *man/SIQR.Rd
 03afd35dc40395f0ff74ba84a0224a48 *man/VIF.Rd
 0f48ae01a7126d6379cb2642d27c321b *man/geary.Rd
 44cb1b88de15390e02bd3acae3247582 *man/gstem.Rd
-d8e042ac6925da02e3e4b7db8fc28088 *man/lifetable.Rd
+05844ed2a46e6674232440ee0cf718bd *man/lifetable.Rd
 bb85b2dfdd1cc17e1067892f7bf2334f *man/mhchart.Rd
 323c88717cdd4d3c4168e08ace367c55 *man/oddsratio.Rd
 4d8479c358c9a4c84768ace79e7007e9 *man/pairwisefisher.Rd
