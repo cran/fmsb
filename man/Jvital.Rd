@@ -61,6 +61,9 @@
  \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai10/toukei02.html}
  \url{http://www.ipss.go.jp/p-info/e/psj2012/PSJ2012-05.xls}
  \url{http://www.e-stat.go.jp/SG1/estat/GL02020101.do?method=csvDownload&amp;fileId=000006490047&amp;releaseCount=1}
+ \url{http://www.e-stat.go.jp/SG1/estat/Csvdl.do?sinfid=000022220050}
+ \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei12/dl/00_all.pdf}
+ \url{http://www.e-stat.go.jp/SG1/estat/Csvdl.do?sinfid=000022220091}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.

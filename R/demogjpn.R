@@ -10,6 +10,8 @@
 #  (completed life tables in Japan), Gompertz, Siler, Denny, CT, Hadwiger
 #  and related functions were added.
 # rev. 0.3.5, 11 December 2012, Jlife was updated (added qx2010M and qx2010F)
+# rev. 0.5.0, 4 August 2014, lifetable3() was added, Jvital was updated,
+#           fitGM() and fitSiler() for the data with missing value were improved.
 
 # Model population of Japan in Showa 60 (1985)
 S60MPJ <- c(8180, 8338, 8497, 8655, 8814, 8972, 9130, 9289, 
@@ -272,10 +274,10 @@ PNMPB = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 MR = c(6.9, 7.9, 8.5, 8.8, 8.1, 8.6, 7.5, 7.5, 9.1, 9.6, 9, 9, 8.7, 8.5, 8.4, 8.7, 8.4, 8.1, 8.3, 9.1, 8.7, 9.8, 9.2, 9, 8.8, 8.7, 8.7, 8.3, 7.9, 8, 7.8, 7.9, 7.6, 7.8, 7.2, 7.5, 8, 7.8, 9.5, 7.6, 7.8, 9.3, 11, 9.4, 10.2, 12, 11.9, 10.3, 8.6, 7.9, 7.9, 7.8, 7.9, 8, 7.9, 8.5, 9, 9.1, 9.3, 9.4, 9.8, 9.7, 9.9, 9.7, 9.5, 9.6, 9.5, 9.6, 10, 10.5, 10.4, 9.9, 9.1, 8.5, 7.8, 7.2, 6.9, 6.8, 6.7, 6.6, 6.6, 6.4, 6.2, 6.1, 5.9, 5.7, 5.8, 5.8, 5.9, 6, 6.1, 6.4, 6.3, 6.4, 6.4, 6.2, 6.3, 6.1, 6.4, 6.4, 6, 5.9, 5.7, 5.7, 5.8, 5.7, 5.8, 5.6, 5.5, 5.2, 5.3),
 DR = c(1.53, 1.46, 1.43, 1.43, 1.44, 1.39, 1.29, 1.39, 1.29, 1.26, 1.21, 1.21, 1.16, 1.17, 1.16, 1.15, 1.14, 1.13, 1.03, 1.03, 1.03, 0.99, 0.94, 0.92, 0.88, 0.88, 0.87, 0.83, 0.82, 0.78, 0.81, 0.8, 0.77, 0.77, 0.73, 0.71, 0.7, 0.66, 0.66, 0.63, 0.64, 0.68, 0.69, 0.64, 0.68, 1.02, 0.99, 1.01, 1.01, 0.97, 0.92, 0.86, 0.87, 0.84, 0.8, 0.79, 0.8, 0.78, 0.74, 0.74, 0.75, 0.73, 0.74, 0.79, 0.8, 0.84, 0.87, 0.89, 0.93, 0.99, 1.02, 1.04, 1.04, 1.07, 1.11, 1.14, 1.15, 1.17, 1.22, 1.32, 1.39, 1.51, 1.5, 1.39, 1.37, 1.3, 1.26, 1.29, 1.28, 1.37, 1.45, 1.52, 1.57, 1.6, 1.66, 1.78, 1.94, 2, 2.1, 2.27, 2.3, 2.25, 2.15, 2.08, 2.04, 2.02, 1.99, 2.01, 1.99, 1.87, 1.87),
 TFR = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 5.11, NA, NA, NA, NA, 4.72, NA, NA, NA, NA, NA, NA, 4.37, 3.82, 3.74, 4.12, NA, NA, NA, NA, NA, NA, 4.54, 4.4, 4.32, 3.65, 3.26, 2.98, 2.69, 2.48, 2.37, 2.22, 2.04, 2.11, 2.04, 2, 1.96, 1.98, 2, 2.05, 2.14, 1.58, 2.23, 2.13, 2.13, 2.13, 2.16, 2.14, 2.14, 2.05, 1.91, 1.85, 1.8, 1.79, 1.77, 1.75, 1.74, 1.77, 1.8, 1.81, 1.76, 1.72, 1.69, 1.66, 1.57, 1.54, 1.53, 1.5, 1.46, 1.5, 1.42, 1.43, 1.39, 1.38, 1.34, 1.36, 1.33, 1.32, 1.29, 1.29, 1.26, 1.32, 1.34, 1.37, 1.37, 1.39, 1.39, 1.41),
-ASMRM = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 23.6, 19.3, 18.9, 18.6, 16.9, 15.7, 16.4, 15.2, 14.8, 15.6, 16.3, 14.4, 14.4, 14.8, 14.3, 14.6, 13.4, 13.2, 13.7, 12.7, 12.6, 12.5, 12.4, 12.3, 11.5, 11.2, 11.2, 10.9, 10.4, 10.1, 9.6, 9.4, 9, 9.2, 8.9, 8.5, 8.6, 8.3, 8.1, 7.8, 7.6, 7.7, 7.4, 7.5, 7.4, 7.4, 7.3, 7.1, 7.2, 6.8, 6.7, 6.6, 6.7, 6.3, 6.2, 6, 6, 5.9, 5.9, 5.7, 5.6, 5.6, 5.4, 5.4, NA, NA),
-ASMRF = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 18.3, 15.4, 15, 14.6, 13.4, 12.4, 12.6, 11.3, 11, 11.5, 11.8, 10.4, 10.2, 10.4, 10, 10, 9.3, 9.1, 9.3, 8.7, 8.5, 8.4, 8.2, 8.2, 7.6, 7.4, 7.4, 7.2, 6.9, 6.6, 6.2, 6, 5.7, 5.8, 5.6, 5.2, 5.2, 5, 4.8, 4.6, 4.4, 4.5, 4.2, 4.2, 4.1, 4, 4, 3.8, 3.8, 3.6, 3.5, 3.4, 3.4, 3.2, 3.1, 3, 3, 3, 3, 2.9, 2.8, 2.8, 2.7, 2.7, NA, NA),
-PNMPLB = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 46.6, 46.7, 45.6, 46, 45.1, 43.9, 45.5, 45, 43.9, 43, 41.4, 40.9, 38.7, 36.2, 33.1, 30.1, 31.3, 26.3, 24.5, 23, 21.7, 20.4, 19, 18, 16.9, 16, 14.8, 14.1, 13, 12.5, 11.7, 10.8, 10.1, 9.3, 8.7, 8, 7.3, 6.9, 6.5, 6, 5.7, 5.3, 5.2, 5, 5, 4.7, 4.4, 4.2, 4.1, 4, 3.8, 3.6, 3.7, 3.6, 3.3, 3.3, 3.1, 3, 2.9, 2.9, 2.9, NA, NA),
-MMR = c(409.8, 397.8, 402.6, 392.9, 369.3, 361.7, 387.8, 403.9, 379.4, 388.4, 344.9, 333.0, 325.4, 306.1, 309.7, 328.4, 332.5, 325.8, 326.1, 352.1, 309.2, 329.9, 337.3, 312.4, 316.8, 295.3, 285.4, 256.7, 264.7, 265.8, 267.4, 257.9, 255.4, 240.2, 257.8, 264.7, 247.1, 243.3, 237.5, 240.5, 240.9, 228.6, 207.0, 196.9, 193.6, 160.1, 157.0, 159.2, 161.2, 156.7, 154.7, 163.6, 166.7, 161.7, 153.9, 153.6, 139.2, 131.7, 117.5, 108.2, 100.9, 92.7, 90.1, 80.4, 83.9, 65.5, 63.3, 53.9, 48.7, 42.5, 38.2, 36.3, 32.7, 27.3, 24.5, 21.9, 21.0, 21.8, 19.5, 18.3, 17.5, 14.8, 14.6, 15.1, 12.9, 11.5, 9.2, 10.4, 8.2, 8.6, 8.8, 7.4, 5.9, 6.9, 5.8, 6.3, 6.9, 5.9, 6.3, 6.3, 7.1, 6.0, 4.3, 5.7, 4.8, 3.1, 3.5, 4.8, 4.1, NA, NA)
+ASMRM = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 23.6, 19.3, 18.9, 18.6, 16.9, 15.7, 16.4, 15.2, 14.8, 15.6, 16.3, 14.4, 14.4, 14.8, 14.3, 14.6, 13.4, 13.2, 13.7, 12.7, 12.6, 12.5, 12.4, 12.3, 11.5, 11.2, 11.2, 10.9, 10.4, 10.1, 9.6, 9.4, 9, 9.2, 8.9, 8.5, 8.6, 8.3, 8.1, 7.8, 7.6, 7.7, 7.4, 7.5, 7.4, 7.4, 7.3, 7.1, 7.2, 6.8, 6.7, 6.6, 6.7, 6.3, 6.2, 6, 6, 5.9, 5.9, 5.7, 5.6, 5.6, 5.4, 5.4, 5.5, 5.2),
+ASMRF = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 18.3, 15.4, 15, 14.6, 13.4, 12.4, 12.6, 11.3, 11, 11.5, 11.8, 10.4, 10.2, 10.4, 10, 10, 9.3, 9.1, 9.3, 8.7, 8.5, 8.4, 8.2, 8.2, 7.6, 7.4, 7.4, 7.2, 6.9, 6.6, 6.2, 6, 5.7, 5.8, 5.6, 5.2, 5.2, 5, 4.8, 4.6, 4.4, 4.5, 4.2, 4.2, 4.1, 4, 4, 3.8, 3.8, 3.6, 3.5, 3.4, 3.4, 3.2, 3.1, 3, 3, 3, 3, 2.9, 2.8, 2.8, 2.7, 2.7, 2.9, 2.7),
+PNMPLB = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 46.6, 46.7, 45.6, 46, 45.1, 43.9, 45.5, 45, 43.9, 43, 41.4, 40.9, 38.7, 36.2, 33.1, 30.1, 31.3, 26.3, 24.5, 23, 21.7, 20.4, 19, 18, 16.9, 16, 14.8, 14.1, 13, 12.5, 11.7, 10.8, 10.1, 9.3, 8.7, 8, 7.3, 6.9, 6.5, 6, 5.7, 5.3, 5.2, 5, 5, 4.7, 4.4, 4.2, 4.1, 4, 3.8, 3.6, 3.7, 3.6, 3.3, 3.3, 3.1, 3, 2.9, 2.9, 2.9, 2.8, 2.7),
+MMR = c(409.8, 397.8, 402.6, 392.9, 369.3, 361.7, 387.8, 403.9, 379.4, 388.4, 344.9, 333.0, 325.4, 306.1, 309.7, 328.4, 332.5, 325.8, 326.1, 352.1, 309.2, 329.9, 337.3, 312.4, 316.8, 295.3, 285.4, 256.7, 264.7, 265.8, 267.4, 257.9, 255.4, 240.2, 257.8, 264.7, 247.1, 243.3, 237.5, 240.5, 240.9, 228.6, 207.0, 196.9, 193.6, 160.1, 157.0, 159.2, 161.2, 156.7, 154.7, 163.6, 166.7, 161.7, 153.9, 153.6, 139.2, 131.7, 117.5, 108.2, 100.9, 92.7, 90.1, 80.4, 83.9, 65.5, 63.3, 53.9, 48.7, 42.5, 38.2, 36.3, 32.7, 27.3, 24.5, 21.9, 21.0, 21.8, 19.5, 18.3, 17.5, 14.8, 14.6, 15.1, 12.9, 11.5, 9.2, 10.4, 8.2, 8.6, 8.8, 7.4, 5.9, 6.9, 5.8, 6.3, 6.9, 5.9, 6.3, 6.3, 7.1, 6.0, 4.3, 5.7, 4.8, 3.1, 3.5, 4.8, 4.1, 3.8, 4.0)
 )
 
 # Funtions for mutual conversion among lifetable functions
@@ -467,6 +469,34 @@ lifetable2 <- function(mx, ax=0.5, n=1) {
  return(data.frame(ages,n,ax,mx,qx,px,lx,dx,Lx,Tx,ex))
 }
 
+# making lifetable from lx
+lifetable3 <- function (lx, ax=0.5, n=1) {
+    nc <- length(lx)
+    if (length(ax) == 1) {
+        ax <- rep(ax, nc)
+    }
+    if (length(n) == 1) {
+        n <- rep(n, nc)
+    }
+    ages <- c(0, cumsum(n)[1:(nc - 1)])
+    mx <- qx <- px <- dx <- Lx <- numeric(nc)
+    for (i in 1:(nc - 1)) {
+        dx[i] <- lx[i] - lx[i+1]
+        qx[i] <- dx[i]/lx[i]
+        px[i] <- 1 - qx[i]
+        mx[i] <- qx[i]/(n[i] * (1 - qx[i] * (1 - ax[i])))
+        Lx[i] <- n[i] * (lx[i+1] + ax[i] * dx[i])
+    }
+    dx[nc] <- lx[nc]
+    qx[nc] <- 1
+    px[nc] <- 0
+    mx[nc] <- 1/(n[nc] * ax[nc])
+    Lx[nc] <- lx[nc]/mx[nc]
+    Tx <- rev(cumsum(rev(Lx)))
+    ex <- Tx/lx
+    return(data.frame(ages, n, ax, mx, qx, px, lx, dx, Lx, Tx, ex))
+}
+
 # making lifetable from qx
 clifetable <- function(qx) {
  nc <- length(qx)
@@ -497,7 +527,8 @@ fitSiler <- function(initialpar=c(0.01,3,1e-4,1e-5,0.1), data, mode=1, Method="N
   fSiler <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
    nc <- length(rqx)
    mqx <- Siler(x[1], x[2], x[3], x[4], x[5], 0:(nc-1))
-   res <- sum((mqx-rqx)^2)
+   matched <- !is.na(rqx)
+   res <- sum((mqx[matched]-rqx[matched])^2)
    RMSE <- sqrt(res/nc)
    return(RMSE)
   }
@@ -506,7 +537,8 @@ fitSiler <- function(initialpar=c(0.01,3,1e-4,1e-5,0.1), data, mode=1, Method="N
    fSiler <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
     nc <- length(rqx)
     mqx <- Siler(x[1], x[2], x[3], x[4], x[5], 0:(nc-1))
-    res <- sum((qxtodx(mqx)-qxtodx(rqx))^2)
+    matched <- !is.na(rqx)
+    res <- sum((qxtodx(mqx[matched])-qxtodx(rqx[matched]))^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
@@ -514,14 +546,14 @@ fitSiler <- function(initialpar=c(0.01,3,1e-4,1e-5,0.1), data, mode=1, Method="N
    fSiler <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
     nc <- length(rqx)
     mqx <- Siler(x[1], x[2], x[3], x[4], x[5], 0:(nc-1))
-    res <- sum((qxtolx(mqx)-qxtolx(rqx))^2)
+    matched <- !is.na(rqx)
+    res <- sum((qxtolx(mqx[matched])-qxtolx(rqx[matched]))^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
   }
  }
- xdata <- data[!is.na(data)]
- rS <- optim(initialpar, fSiler, gr=NULL, xdata, method=Method, ...)
+ rS <- optim(initialpar, fSiler, gr=NULL, data, method=Method, ...)
  return(c(rS$par,rS$value,rS$convergence))
 }
 
@@ -536,7 +568,8 @@ fitGM <- function(initialpar=c(0.01, 0.0003, 0.07), data, mode=1, Method="Nelder
   fGompertzMakeham <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
    nc <- length(rqx)
    mqx <- GompertzMakeham(x[1], x[2], x[3], 0:(nc-1))
-   res <- sum((mqx-rqx)^2)
+   matched <- !is.na(rqx)
+   res <- sum((mqx[matched]-rqx[matched])^2)
    RMSE <- sqrt(res/nc)
    return(RMSE)
   }
@@ -545,7 +578,8 @@ fitGM <- function(initialpar=c(0.01, 0.0003, 0.07), data, mode=1, Method="Nelder
    fGompertzMakeham <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
     nc <- length(rqx)
     mqx <- GompertzMakeham(x[1], x[2], x[3], 0:(nc-1))
-    res <- sum((qxtodx(mqx)-qxtodx(rqx))^2)
+    matched <- !is.na(rqx)
+    res <- sum((qxtodx(mqx[matched])-qxtodx(rqx[matched]))^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
@@ -553,14 +587,14 @@ fitGM <- function(initialpar=c(0.01, 0.0003, 0.07), data, mode=1, Method="Nelder
    fGompertzMakeham <- function(x, rqx) { # rqx must be real qx for each age 0 to length(rqx)-1.
     nc <- length(rqx)
     mqx <- GompertzMakeham(x[1], x[2], x[3], 0:(nc-1))
-    res <- sum((qxtolx(mqx)-qxtolx(rqx))^2)
+    matched <- !is.na(rqx)
+    res <- sum((qxtolx(mqx[matched])-qxtolx(rqx[matched]))^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
   }
  }
- xdata <- data[!is.na(data)]
- rGM <- optim(initialpar, fGompertzMakeham, gr=NULL, xdata, method=Method, ...)
+ rGM <- optim(initialpar, fGompertzMakeham, gr=NULL, data, method=Method, ...)
  return(c(rGM$par,rGM$value,rGM$convergence))
 }
 
@@ -576,7 +610,8 @@ fitDenny <- function(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead",
   fDenny <- function(x, rlx) { # rlx must be real lx for each age 0 to length(rlx)-1.
    nc <- length(rlx)
    mlx <- Denny(x[1], x[2], x[3], 0:(nc-1))
-   res <- sum((lxtoqx(mlx)-lxtoqx(rlx))^2)
+   matched <- !is.na(rlx)
+   res <- sum((lxtoqx(mlx[matched])-lxtoqx(rlx[matched]))^2)
    RMSE <- sqrt(res/nc)
    return(RMSE)
   }
@@ -585,7 +620,8 @@ fitDenny <- function(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead",
    fDenny <- function(x, rlx) { # rlx must be real lx for each age 0 to length(rlx)-1.
     nc <- length(rlx)
     mlx <- Denny(x[1], x[2], x[3], 0:(nc-1))
-    res <- sum((lxtodx(mlx)-lxtodx(rlx))^2)
+    matched <- !is.na(rlx)
+    res <- sum((lxtodx(mlx[matched])-lxtodx(rlx[matched]))^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
@@ -593,14 +629,14 @@ fitDenny <- function(initialpar=rep(0.1, 3), data, mode=3, Method="Nelder-Mead",
    fDenny <- function(x, rlx) { # rlx must be real lx for each age 0 to length(rlx)-1.
     nc <- length(rlx)
     mlx <- Denny(x[1], x[2], x[3], 0:(nc-1))
-    res <- sum((mlx-rlx)^2)
+    matched <- !is.na(rlx)
+    res <- sum((mlx[matched]-rlx[matched])^2)
     RMSE <- sqrt(res/nc)
     return(RMSE)
    }
   }
  }
- xdata <- data[!is.na(data)]
- rDenny <- optim(initialpar, fDenny, gr=NULL, xdata, method=Method, ...)
+ rDenny <- optim(initialpar, fDenny, gr=NULL, data, method=Method, ...)
  return(c(rDenny$par,rDenny$value,rDenny$convergence))
 }
 

@@ -1,3 +1,10 @@
+Changes to version 0.5.0
+
+	added the lifetable function for lx, lifetable3().
+	updated the Jvital data.
+	fixed for dealing with missing values for fitGM() and fitSiler().
+	added the label size magnification options for radarchart().
+
 Changes to version 0.4.5
 
 	added the several options to functions mxtoqx() and qxtomx(), using ax and n.

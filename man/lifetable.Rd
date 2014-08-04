@@ -1,6 +1,7 @@
 \name{lifetable}
 \alias{lifetable}
 \alias{lifetable2}
+\alias{lifetable3}
 \alias{clifetable}
 \alias{lxtodx}
 \alias{dxtolx}
@@ -18,6 +19,7 @@
 \usage{
  lifetable(mx, ns=NULL, class=5, mode=1)
  lifetable2(mx, ax=0.5, n=1)
+ lifetable3(lx, ax=0.5, n=1)
  clifetable(qx)
  lxtodx(lx)
  dxtolx(dx)
@@ -56,7 +58,8 @@
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \references{
- Preston SH, Heuveline P, Guillot M (2001) Demography: Measuring and Modeling Population Processes.  Blackwell Publishing, Oxford.
+ Preston SH, Heuveline P, Guillot M (2001) Demography: Measuring and Modeling 
+ Population Processes.  Blackwell Publishing, Oxford.
  
  Newell C (1988) Methods and Models in Demography.  The Guilford Press, New York.
 }
@@ -69,5 +72,9 @@
               0.000566, 0.000884, 0.001445, 0.002485, 0.004210, 0.007219, 0.012054, 
               0.018259, 0.029920, 0.049689, 0.085545, 0.177987), 
               ax = c(0.1, 0.4, rep(0.5, 16), NA), n = c(1, 4, rep(5, 16), NA) )
+ lifetable3(lx=c(1.0, 0.8499, 0.8070, 0.7876, 0.7762, 0.7691, 0.7502, 0.7362,
+                 0.7130, 0.6826, 0.6525, 0.6223, 0.5898, 0.5535, 0.5106, 0.4585,
+                 0.3965, 0.3210, 0.2380, 0.1516, 0.0768, 0.0276, 0.0059, 0.0006, 0),
+                 n=c(rep(1, 5), rep(5, 20)), ax=c(0.3, rep(0.5, 24))) # Newell, Table 13.1
  clifetable(Jlife$qx2000F)
 }

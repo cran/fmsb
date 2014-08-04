@@ -10,6 +10,7 @@
 # rev. 0.3.7, 7 Feb 2013, add a new centerzero option of radarchart()
 # rev. 0.4.3, 27 January 2014, bug fix of pvalueplot().  Important!!
 # rev. 0.4.4, 3 May 2014, bug fix of and adding an option to radarchart().
+# rev. 0.5.0, 4 August 2014, label size option was added to radarchart().
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -313,8 +314,9 @@ percentile <- function(dat) { # convert numeric vector into percentiles
 radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1,
                        pdensity=NULL, pangle=45, pfcol=NA, cglty=3, cglwd=1,
                        cglcol="navy", axislabcol="blue", title="", maxmin=TRUE,
-                       na.itp=TRUE, centerzero=FALSE, vlabels=NULL,
-                       caxislabels=NULL, paxislabels=NULL, ...) {
+                       na.itp=TRUE, centerzero=FALSE, vlabels=NULL, vlcex=NULL,
+                       caxislabels=NULL, calcex=NULL,
+                       paxislabels=NULL, palcex=NULL, ...) {
   if (!is.data.frame(df)) { cat("The data must be given as dataframe.\n"); return() }
   if ((n <- length(df))<3) { cat("The number of variables must be 3 or more.\n"); return() }
   if (maxmin==FALSE) { # when the dataframe does not include max and min as the top 2 rows.
@@ -334,7 +336,10 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
     if (axistype==1|axistype==3) CAXISLABELS <- paste(i/seg*100,"(%)")
     if (axistype==4|axistype==5) CAXISLABELS <- sprintf("%3.2f",i/seg)
     if (!is.null(caxislabels)&(i<length(caxislabels))) CAXISLABELS <- caxislabels[i+1]
-    if (axistype==1|axistype==3|axistype==4|axistype==5) text(-0.05, (i+CGap)/(seg+CGap), CAXISLABELS, col=axislabcol)
+    if (axistype==1|axistype==3|axistype==4|axistype==5) {
+     if (is.null(calcex)) text(-0.05, (i+CGap)/(seg+CGap), CAXISLABELS, col=axislabcol) else
+     text(-0.05, (i+CGap)/(seg+CGap), CAXISLABELS, col=axislabcol, cex=calcex)
+    }
   }
   if (centerzero) {
     arrows(0, 0, xx*1, yy*1, lwd=cglwd, lty=cglty, length=0, col=cglcol)
@@ -344,10 +349,14 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
   }
   PAXISLABELS <- df[1,1:n]
   if (!is.null(paxislabels)) PAXISLABELS <- paxislabels
-  if (axistype==2|axistype==3|axistype==5) { text(xx[1:n], yy[1:n], PAXISLABELS, col=axislabcol) }
+  if (axistype==2|axistype==3|axistype==5) {
+   if (is.null(palcex)) text(xx[1:n], yy[1:n], PAXISLABELS, col=axislabcol) else
+   text(xx[1:n], yy[1:n], PAXISLABELS, col=axislabcol, cex=palcex)
+  }
   VLABELS <- colnames(df)
   if (!is.null(vlabels)) VLABELS <- vlabels
-  text(xx*1.2, yy*1.2, VLABELS)
+  if (is.null(vlcex)) text(xx*1.2, yy*1.2, VLABELS) else
+  text(xx*1.2, yy*1.2, VLABELS, cex=vlcex)
   series <- length(df[[1]])
   SX <- series-2
   if (length(pty) < SX) { ptys <- rep(pty, SX) } else { ptys <- pty }
@@ -398,7 +407,8 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
       if (is.null(pdensities)) {
         polygon(xxs, yys, lty=pltys[i-2], lwd=plwds[i-2], border=pcols[i-2], col=pfcols[i-2])
       } else {
-        polygon(xxs, yys, lty=pltys[i-2], lwd=plwds[i-2], border=pcols[i-2], density=pdensities[i-2], angle=pangles[i-2], col=pfcols[i-2])
+        polygon(xxs, yys, lty=pltys[i-2], lwd=plwds[i-2], border=pcols[i-2], 
+         density=pdensities[i-2], angle=pangles[i-2], col=pfcols[i-2])
       }
       points(xx*scale, yy*scale, pch=ptys[i-2], col=pcols[i-2])
     }

@@ -9,7 +9,7 @@
 \usage{
  radarchart(df, axistype, seg, pty, pcol, plty, plwd, pdensity, pangle, pfcol, 
  cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, centerzero, 
- vlabels, caxislabels, paxislabels, ...)
+ vlabels, vlcex, caxislabels, calcex, paxislabels, palcex, ...)
 }
 \arguments{
  \item{df}{The data frame to be used to draw radarchart.  If maxmin is TRUE, this must include maximum values as row 1 and minimum values as row 2 for each variables, and actual data should be given as row 3 and lower rows.  The number of columns (variables) must be more than 2.}
@@ -31,8 +31,11 @@
  \item{na.itp}{Logical. If true, items with NA values are interpolated from nearest neighbor items and connect them.  If false, items with NA are treated as the origin (but not pointed, only connected with lines).  Default FALSE.}
  \item{centerzero}{Logical. If true, this function draws charts with scaling originated from (0,0).  If false, charts originated from (1/segments).  Default FALSE.}
  \item{vlabels}{Character vector for the names for variables.  If NULL, the names of the variables as colnames(df) are used.  Default NULL.}
+ \item{vlcex}{Font size magnification for vlabels.  If NULL, the font size is fixed at text()'s default.  Default NULL.}
  \item{caxislabels}{Character vector for center axis labels, overwriting values specified in axistype option.  If NULL, the values specified by axistype option are used. Default is NULL.}
+ \item{calcex}{Font size magnification for caxislabels.  If NULL, the font size is fixed at text()'s default.  Default NULL.}
  \item{paxislabels}{Character vector for around-the-chart (peripheral) labels, overwriting values specified in axistype option.  If NULL, the values specified by axistype option are used. Default is NULL.}
+ \item{palcex}{Font size magnification for paxislabels.  If NULL, the font size is fixed at text()'s default.  Default NULL.}
  \item{...}{Miscellaneous arguments to be given for plot.default().}
 }
 \value{
@@ -60,7 +63,7 @@ dat <- rbind(maxmin,dat)
 op <- par(mar=c(1, 2, 2, 1),mfrow=c(2, 2))
 radarchart(dat, axistype=1, seg=5, plty=1, vlabels=c("Total\nQOL", "Physical\naspects", 
  "Phychological\naspects", "Social\naspects", "Environmental\naspects"), 
- title="(axis=1, 5 segments, with specified vlabels)")
+ title="(axis=1, 5 segments, with specified vlabels)", vlcex=0.5)
 radarchart(dat, axistype=2, pcol=topo.colors(3), plty=1, pdensity=c(5, 10, 30), 
  pangle=c(10, 45, 120), pfcol=topo.colors(3), 
  title="(topo.colors, fill, axis=2)")
