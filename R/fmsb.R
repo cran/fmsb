@@ -1,5 +1,5 @@
 # Functions for the book "Practices of Medical and Health Data Analysis using R"
-# written by Minato Nakazawa, 2007-2013.
+# written by Minato Nakazawa, 2007-2014.
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
@@ -11,6 +11,7 @@
 # rev. 0.4.3, 27 January 2014, bug fix of pvalueplot().  Important!!
 # rev. 0.4.4, 3 May 2014, bug fix of and adding an option to radarchart().
 # rev. 0.5.0, 4 August 2014, label size option was added to radarchart().
+# rev. 0.5.1, 15 September 2014, Jvital data was updated and Jvital2013byPref was added.
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }

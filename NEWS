@@ -1,3 +1,9 @@
+Changes to version 0.5.1
+
+	updated the Jvital data.
+	added the Jvital2013byPref data, which is cross sectional vital statistics
+	data in Japan 2013 for each prefecture.
+
 Changes to version 0.5.0
 
 	added the lifetable function for lx, lifetable3().

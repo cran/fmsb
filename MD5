@@ -1,8 +1,8 @@
-1a18ece4d3417608a74442d914e4e4d6 *DESCRIPTION
-335f34b4a1e01375b8f7f178185603d0 *NAMESPACE
-ca73878693dd4bcc46b55fc2209335cc *NEWS
-a2cca0870fceedf274bfd365f2c745ba *R/demogjpn.R
-6ab4d628f469a9e280073c61faccabe5 *R/fmsb.R
+cbecb95df7f2c763c5d3c9b978094205 *DESCRIPTION
+d3ed9056e1015fd9e5793d852bd23534 *NAMESPACE
+b8d0aaf964ce11f67e0a678135b4319a *NEWS
+ea515ee1299e19aada18dc7c2ae9dee1 *R/demogjpn.R
+6af7e2967674a9ba54e43dbb4cdda83f *R/fmsb.R
 71866b215fce2ad705d5a93e5fe2e5ca *man/CM.Rd
 a46285392a814d5f0b1ddd5c909ee58b *man/CT.Rd
 8d34372d5c931d04e833ccd576a06f4c *man/CronbachAlpha.Rd
@@ -14,7 +14,8 @@ e09542258fb7c5f7a97c51e38c7d67ad *man/Hadwiger.Rd
 2484ed01f3212da2efc7c6c6c14b4924 *man/Jlife.Rd
 7bb95c0208bc4214ef37e1e5fa950d88 *man/Jpop.Rd
 0f4e052c10148ec9cb2f0c83deff2f2b *man/Jpopl.Rd
-c50ac2d7dc9ce90015c029aed596b8b5 *man/Jvital.Rd
+d80c36f4937dff64f6a58d5285456957 *man/Jvital.Rd
+e99ec2ccfe02394e9965e952b819385e *man/Jvital2013byPref.Rd
 ad8a7d10c26a55c7468acf1886d109f2 *man/Kappatest.Rd
 33112ad38fcf222ddc830f275d2dbbce *man/Nagelkerke.Rd
 ef61ee953659ffea5597c583a8c8645c *man/S60MPJ.Rd
