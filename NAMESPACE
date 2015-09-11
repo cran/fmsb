@@ -1,5 +1,11 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 14 September 2014
+# last modified 10 September 2015
+importFrom("graphics", "arrows", "barplot", "lines", "plot", "points",
+     "polygon", "rect", "segments", "stem", "text")
+importFrom("stats", "IQR", "complete.cases", "fisher.test", "fivenum",
+     "median", "optim", "p.adjust.methods", "pairwise.table",
+     "pnorm", "qnorm", "quantile", "var")
+     importFrom("utils", "capture.output")
 
 export(SIQR,
        truemedian,
