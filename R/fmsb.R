@@ -1,5 +1,5 @@
 # Functions for the book "Practices of Medical and Health Data Analysis using R"
-# written by Minato Nakazawa, 2007-2014.
+# written by Minato Nakazawa, 2007-2016.
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
@@ -12,6 +12,12 @@
 # rev. 0.4.4, 3 May 2014, bug fix of and adding an option to radarchart().
 # rev. 0.5.0, 4 August 2014, label size option was added to radarchart().
 # rev. 0.5.1, 15 September 2014, Jvital data was updated and Jvital2013byPref was added.
+# rev. 0.5.2. 10 September 2015, Japanese vital statistics (Jvital) was updated
+#           to include 2014 data.
+# rev. 0.5.3. September 2016, hlifetable() for healthy life expectancy was added.
+# rev. 0.6.0, 20 March 2017, New data were added to JASM, Jfert, Jlife, Jpop, 
+#           Jpopl, Jvital.  p-values of oddsratio() and riskratio() were improved. 
+#           In addition, spearman.ci.sas() was added.
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -150,7 +156,7 @@ riskdifference <- function(a, b, N1, N0, CRC=FALSE, conf.level=0.95) {
  return(RVAL)
 }
 
-riskratio <- function(X, Y, m1, m2, conf.level=0.95) {
+riskratio <- function(X, Y, m1, m2, conf.level=0.95, p.calc.by.independence=TRUE) {
  .MAT <- matrix(c(X, Y, m1-X, m2-Y, m1, m2), 2, 3)
  colnames(.MAT) <- c("Disease","Nondisease","Total")
  rownames(.MAT) <- c("Exposed","Nonexposed")
@@ -161,7 +167,11 @@ riskratio <- function(X, Y, m1, m2, conf.level=0.95) {
  Total <- m1+m2
  n2 <- Total-n1
  norm.pp <- qnorm(1-(1-conf.level)/2)
- p.v <- 2*(1-pnorm(abs((X-n1*m1/Total)/sqrt(n1*n2*m1*m2/Total/Total/(Total-1)))))
+ if (p.calc.by.independence) {
+  p.v <- 2*(1-pnorm(abs((X-n1*m1/Total)/sqrt(n1*n2*m1*m2/Total/Total/(Total-1)))))
+ } else {
+  p.v <- 2*(1-pnorm(log(ifelse(ESTIMATE>1,ESTIMATE,1/ESTIMATE))/sqrt(1/X-1/m1+1/Y-1/m2)))
+ }
  RRL <- ESTIMATE*exp(-norm.pp*sqrt(1/X-1/m1+1/Y-1/m2))
  RRU <- ESTIMATE*exp(norm.pp*sqrt(1/X-1/m1+1/Y-1/m2))
  CINT <- c(RRL,RRU)
@@ -174,7 +184,7 @@ riskratio <- function(X, Y, m1, m2, conf.level=0.95) {
  return(RVAL)
 }
 
-oddsratio <- function(a, b, c, d, conf.level=0.95) {
+oddsratio <- function(a, b, c, d, conf.level=0.95, p.calc.by.independence=TRUE) {
  .MAT <- matrix(c(a, b, M1<-a+b, c, d, M0<-c+d, N1<-a+c, N0<-b+d, Total<-a+b+c+d), 3, 3)
  colnames(.MAT) <- c("Disease","Nondisease","Total")
  rownames(.MAT) <- c("Exposed","Nonexposed","Total")
@@ -182,7 +192,11 @@ oddsratio <- function(a, b, c, d, conf.level=0.95) {
  print(.MAT)
  ESTIMATE <- (a*d)/(b*c)
  norm.pp <- qnorm(1-(1-conf.level)/2)
- p.v <- 2*(1-pnorm(abs((a-N1*M1/Total)/sqrt(N1*N0*M1*M0/Total/Total/(Total-1)))))
+ if (p.calc.by.independence) {
+  p.v <- 2*(1-pnorm(abs((a-N1*M1/Total)/sqrt(N1*N0*M1*M0/Total/Total/(Total-1)))))
+ } else {
+  p.v <- 2*(1-pnorm(log(ifelse(ESTIMATE>1,ESTIMATE,1/ESTIMATE))/sqrt(1/a+1/b+1/c+1/d)))
+ }
  ORL <- ESTIMATE*exp(-norm.pp*sqrt(1/a+1/b+1/c+1/d))
  ORU <- ESTIMATE*exp(norm.pp*sqrt(1/a+1/b+1/c+1/d))
  CINT <- c(ORL,ORU)
@@ -492,4 +506,28 @@ mhchart <- function(LIST, XLIM=c(15,45), COL="black", FILL="white", BWD=1, ...) 
  }
  XSEG <- seq(XLIM[1], XLIM[2], by=5)[-1]
  segments(XSEG,0,XSEG,YPOS[NN]+1,col="navy",lty=3)
+}
+
+# Getting confidence intervals of Spearman's rank correlation coefficient by
+# the SAS method.
+# http://support.sas.com/documentation/cdl/en/procstat/63104/HTML/default/corr_toc.htm
+spearman.ci.sas <- function(x, y, adj.bias=TRUE, conf.level=0.95) {
+ n <- length(x)
+ rx <- rank(x)
+ ry <- rank(y)
+ mx <- mean(rx)
+ my <- mean(ry)
+ rho <- sum((rx-mx)*(ry-my))/sqrt(sum((rx-mx)^2)*sum((ry-my)^2))
+ adj <- ifelse(adj.bias, rho/(2*(n-1)), 0)
+ z <- 1/2*log((1+rho)/(1-rho))
+ gg <- qnorm(1-(1-conf.level)/2)*sqrt(1/(n-3))
+ ge <- z - adj
+ gl <- ge - gg
+ gu <- ge + gg
+ rl <- (exp(2*gl)-1)/(exp(2*gl)+1)
+ re <- (exp(2*ge)-1)/(exp(2*ge)+1)
+ ru <- (exp(2*gu)-1)/(exp(2*gu)+1)
+ print(sprintf("rho = %5.3f, %2d%% conf.int = [ %5.3f, %5.3f ]",
+  re, conf.level*100, rl, ru))
+ return(list(rho=re, rho.ll=rl, rho.ul=ru, adj.bias=adj.bias))
 }

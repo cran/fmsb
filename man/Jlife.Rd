@@ -3,10 +3,10 @@
 \alias{Jlife}
 \title{Completed lifetables in Japan.}
 \description{
- The qx column of the completed lifetables in Japan, from "1891-1898" to "2010", mostly every 5 years.
+ The qx column of the completed lifetables in Japan, from "1891-1898" to "2015", mostly every 5 years.
 }
 \usage{ Jlife }
-\format{ A data frame with 117 observations (NAs are filled for the ages with no survivors) on 41 variables.
+\format{ A data frame with 117 observations (NAs are filled for the ages with no survivors) on 43 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab integer \tab Ages of women\cr
@@ -50,6 +50,8 @@
   \code{[,39]} \tab \code{qx2005F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2005.\cr
   \code{[,40]} \tab \code{qx2010M} \tab numeric \tab qx of completed lifetable functions of Japanese men in 2010.\cr
   \code{[,41]} \tab \code{qx2010F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2010.\cr
+  \code{[,42]} \tab \code{qx2015M} \tab numeric \tab qx of completed lifetable functions of Japanese men in 2015.\cr
+  \code{[,43]} \tab \code{qx2015F} \tab numeric \tab qx of completed lifetable functions of Japanese women in 2015.\cr
  }
 }
 \details{
@@ -57,8 +59,8 @@
    
    \itemize{
     \item \code{Age}: Ages from 0 to 116.
-    \item \code{qx1895M}-\code{qx2010M}: qx of 1st to 21st completed lifetables for Japanese men.
-    \item \code{qx1895F}-\code{qx2010F}: qx of 1st to 21st completed lifetables for Japanese women.
+    \item \code{qx1895M}-\code{qx2015M}: qx of 1st to 22nd completed lifetables for Japanese men.
+    \item \code{qx1895F}-\code{qx2015F}: qx of 1st to 22nd completed lifetables for Japanese women.
    }
 }
 \source{
@@ -66,6 +68,7 @@
  \url{http://www.stat.go.jp/data/chouki/zuhyou/02-35.xls}
  \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/20th/index.html}
  \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/21th/index.html}
+ \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/22th/index.html}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Completed lifetables. / Ministry of Internal Affairs and Communications, Statistics Bureau: Historical Statistics of Japan.

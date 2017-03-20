@@ -1,3 +1,14 @@
+Changes to version 0.6.0
+
+	New data were added to JASM, Jfert, Jlife, Jpop, 
+	Jpopl, Jvital.  The p-values of oddsratio() and riskratio() were improved. 
+	In addition, spearman.ci.sas() was added.
+
+Changes to version 0.5.3
+
+	(Not uploaded to cran)
+	Jp2010s, getax(), hlifetable() were added for healthy life expectancy.
+
 Changes to version 0.5.2
 
 	updated the Jvital to include Japan's vital statistics data in 2014.

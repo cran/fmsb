@@ -12,6 +12,9 @@
 \alias{qxtolx}
 \alias{lxtoqx}
 \alias{uxtoqx}
+\alias{getax}
+\alias{hlifetable}
+\alias{Jp2010s}
 \title{Lifetable functions with mutual conversions}
 \description{
  Lifetable related functions.
@@ -30,6 +33,8 @@
  qxtolx(qx)
  lxtoqx(lx)
  uxtoqx(ux)
+ hlifetable(mx, ax=0.5, n=5, pix=0, Nx=NULL, conf.level=0.95)
+ getax(lx, Tx, n=5)
 }
 \arguments{
  \item{mx}{Lifetable function mx, meaning the age (class)-specific death rates.}
@@ -43,6 +48,10 @@
  \item{lx}{Lifetable function lx, which means number of people left alive at age x from 100,000 newborns.}
  \item{dx}{Lifetable function dx, which means number of people dying between age x and x+1 (for lifetable(), x+class) from 100,000 newborns. Differentials of lx.}
  \item{ux}{The force of mortality.}
+ \item{pix}{age-(class-)specific proportions of unhealthy people.}
+ \item{Nx}{Population of xth age-class, which is needed to calculate confidence intervals.}
+ \item{conf.level}{The level of confidence intervals.  Default is 0.95.}
+ \item{Tx}{Lifetable function Tx, which means sum of person-years lived above age x.}
 }
 \value{
  \item{ages}{Lifetable's exact age x, which is the beginning of each interval.}
@@ -62,6 +71,9 @@
  Population Processes.  Blackwell Publishing, Oxford.
  
  Newell C (1988) Methods and Models in Demography.  The Guilford Press, New York.
+ 
+ Sullivan DF (1971) A single index of mortality and morbidity. 
+ HSMHA Health Reports, 86: 347-354.
 }
 \seealso{\link[fmsb]{Jlife}}
 \examples{

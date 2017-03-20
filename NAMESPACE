@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 10 September 2015
+# last modified 20 March 2017
 importFrom("graphics", "arrows", "barplot", "lines", "plot", "points",
      "polygon", "rect", "segments", "stem", "text")
 importFrom("stats", "IQR", "complete.cases", "fisher.test", "fivenum",
@@ -26,6 +26,7 @@ export(SIQR,
        pvalueplot,
        pairwise.fisher.test,
        mhchart,
+       spearman.ci.sas,
        JASM,
        Jlife,
        Jfert,
@@ -58,7 +59,10 @@ export(SIQR,
        lifetable,
        lifetable2,
        lifetable3,
-       clifetable)
+       clifetable,
+       Jp2010s,
+       getax,
+       hlifetable)
 
 # methods
     

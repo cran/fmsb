@@ -3,10 +3,10 @@
 \alias{Jfert}
 \title{Age-specific fertility rates and age-specific marital fertility rates in Japan.}
 \description{
-  Age-specific fertility and marital fertility rates for aged 15-54 Japanese wowmen in Japan, from 1950 to 2010, every five years.
+  Age-specific fertility and marital fertility rates for aged 15-54 Japanese wowmen in Japan, from 1950 to 2015, every five years.
 }
 \usage{ Jfert }
-\format{ A data frame with 40 observations on 27 variables.
+\format{ A data frame with 40 observations on 29 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab integer \tab Ages of women\cr
@@ -23,19 +23,21 @@
   \code{[,12]} \tab \code{ASFR2000} \tab numeric \tab Age-specific fertility rates of Japanese women in 2000.\cr
   \code{[,13]} \tab \code{ASFR2005} \tab numeric \tab Age-specific fertility rates of Japanese women in 2005.\cr
   \code{[,14]} \tab \code{ASFR2010} \tab numeric \tab Age-specific fertility rates of Japanese women in 2010.\cr
-  \code{[,15]} \tab \code{ASMFR1950} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1950.\cr
-  \code{[,16]} \tab \code{ASMFR1955} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1955.\cr
-  \code{[,17]} \tab \code{ASMFR1960} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1960.\cr
-  \code{[,18]} \tab \code{ASMFR1965} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1965.\cr
-  \code{[,19]} \tab \code{ASMFR1970} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1970.\cr
-  \code{[,20]} \tab \code{ASMFR1975} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1975.\cr
-  \code{[,21]} \tab \code{ASMFR1980} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1980.\cr
-  \code{[,22]} \tab \code{ASMFR1985} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1985.\cr
-  \code{[,23]} \tab \code{ASMFR1990} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1990.\cr
-  \code{[,24]} \tab \code{ASMFR1995} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1995.\cr
-  \code{[,25]} \tab \code{ASMFR2000} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2000.\cr
-  \code{[,26]} \tab \code{ASMFR2005} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2005.\cr
-  \code{[,27]} \tab \code{ASMFR2010} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2010.\cr
+  \code{[,15]} \tab \code{ASFR2015} \tab numeric \tab Age-specific fertility rates of Japanese women in 2015.\cr
+  \code{[,16]} \tab \code{ASMFR1950} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1950.\cr
+  \code{[,17]} \tab \code{ASMFR1955} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1955.\cr
+  \code{[,18]} \tab \code{ASMFR1960} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1960.\cr
+  \code{[,19]} \tab \code{ASMFR1965} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1965.\cr
+  \code{[,20]} \tab \code{ASMFR1970} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1970.\cr
+  \code{[,21]} \tab \code{ASMFR1975} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1975.\cr
+  \code{[,22]} \tab \code{ASMFR1980} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1980.\cr
+  \code{[,23]} \tab \code{ASMFR1985} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1985.\cr
+  \code{[,24]} \tab \code{ASMFR1990} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1990.\cr
+  \code{[,25]} \tab \code{ASMFR1995} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 1995.\cr
+  \code{[,26]} \tab \code{ASMFR2000} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2000.\cr
+  \code{[,27]} \tab \code{ASMFR2005} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2005.\cr
+  \code{[,28]} \tab \code{ASMFR2010} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2010.\cr
+  \code{[,29]} \tab \code{ASMFR2015} \tab numeric \tab Age-specific marital fertility rates of Japanese married women in 2015.\cr
  }
 }
 \details{
@@ -45,13 +47,15 @@
    
    \itemize{
     \item \code{Age}: Ages of women, from 15 to 54.
-    \item \code{ASFR1950}-\code{ASFR2010}: Age-specific fertility rates for all women aged 15-54 for 1950-2010, every 5 years.
-    \item \code{ASMFR1950}-\code{ASMFR2010}: Age-specific marital fertility rates for married women aged 15-54 for 1950-2010, every 5 years.
+    \item \code{ASFR1950}-\code{ASFR2015}: Age-specific fertility rates for all women aged 15-54 for 1950-2015, every 5 years.
+    \item \code{ASMFR1950}-\code{ASMFR2015}: Age-specific marital fertility rates for married women aged 15-54 for 1950-2015, every 5 years.
    }
 }
 \source{
  \url{http://www.stat.go.jp/english/data/chouki/02.htm}
  \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
+ \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007718960&releaseCount=2}
+ \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007809797&releaseCount=2}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics. / Ministry of Internal Affairs and Communications, Statistics Bureau: Population Census.

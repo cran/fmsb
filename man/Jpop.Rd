@@ -7,7 +7,7 @@
  results in Japan.
 }
 \usage{ Jpop }
-\format{ A data frame with 86 observations on 53 variables.
+\format{ A data frame with 86 observations on 57 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab Factor w/86 levels \tab Ages (years old, combined for 85+)\cr
@@ -63,6 +63,10 @@
   \code{[,51]} \tab \code{F2005} \tab numeric \tab Age specific population of females in 2005\cr
   \code{[,52]} \tab \code{M2010} \tab numeric \tab Age specific population of males in 2010\cr
   \code{[,53]} \tab \code{F2010} \tab numeric \tab Age specific population of females in 2010\cr
+  \code{[,54]} \tab \code{M2015} \tab numeric \tab Age specific population of males in 2015\cr
+  \code{[,55]} \tab \code{F2015} \tab numeric \tab Age specific population of females in 2015\cr
+  \code{[,56]} \tab \code{M2015J} \tab numeric \tab Age specific population of Japanese males in 2015\cr
+  \code{[,57]} \tab \code{F2015J} \tab numeric \tab Age specific population of Japanese females in 2015\cr
  }
 }
 \details{
@@ -71,15 +75,18 @@
    
    \itemize{
     \item \code{Age}: Ages, combined for 85+.
-    \item \code{M1888}-\code{M2010}: Age specific number of males' population in 1988-2010.
-    \item \code{F1888}-\code{F2010}: Age specific number of females' population in 1988-2010.
+    \item \code{M1888}-\code{M2015}: Age specific number of males' population in 1988-2015.
+    \item \code{F1888}-\code{F2015}: Age specific number of females' population in 1988-2015.
+    \item \code{M2015J}, \code{F2015J}: Age specific number of the Japanese population in
+    2015 for males and females, respectively.
    }
 }
 \source{
  \url{http://www.stat.go.jp/english/data/kokusei/index.htm}
  \url{http://www.stat.go.jp/english/data/chouki/02.htm}
+ \url{https://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007809775&releaseCount=3}
 }
 \references{
-  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2010.
+  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2015.
 }
 \keyword{datasets}
