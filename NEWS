@@ -1,3 +1,9 @@
+Changes to version 0.6.1
+
+	Bug fix in the variable name ASMFR2015 of the Jfert dataframe.
+	Three demographic functions WhipplesIndex(), CaretakerRatio(),
+	and IndexOfDissimilarity() were added.
+
 Changes to version 0.6.0
 
 	New data were added to JASM, Jfert, Jlife, Jpop, 
