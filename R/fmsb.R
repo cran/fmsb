@@ -1,5 +1,5 @@
 # Functions for the book "Practices of Medical and Health Data Analysis using R"
-# written by Minato Nakazawa, 2007-2016.
+# written by Minato Nakazawa, 2007-2018.
 # rev. 0.1, 29 Mar 2010
 # rev. 0.2, 24 Aug 2010, combined with demogjpn.R
 # rev. 0.2.1, 7 May 2011, fix the exceptional treatment of radarchart() concerning "left"
@@ -18,6 +18,8 @@
 # rev. 0.6.0, 20 March 2017, New data were added to JASM, Jfert, Jlife, Jpop, 
 #           Jpopl, Jvital.  p-values of oddsratio() and riskratio() were improved. 
 #           In addition, spearman.ci.sas() was added.
+# rev. 0.6.2, 16 May 2017, Added option maxdist to roc().
+# rev. 0.6.3. 2 April 2018, oddsratio() now accept 2 by 2 matrix (Thanks to Dr. Ara).
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -184,27 +186,47 @@ riskratio <- function(X, Y, m1, m2, conf.level=0.95, p.calc.by.independence=TRUE
  return(RVAL)
 }
 
-oddsratio <- function(a, b, c, d, conf.level=0.95, p.calc.by.independence=TRUE) {
- .MAT <- matrix(c(a, b, M1<-a+b, c, d, M0<-c+d, N1<-a+c, N0<-b+d, Total<-a+b+c+d), 3, 3)
+oddsratio <- function(a, b=NULL, c=NULL, d=NULL, conf.level=0.95, p.calc.by.independence=TRUE) {
+ if (is.matrix(a)) {
+  if ((dim(a)[1] != 2L) | (dim(a)[2] != 2L)) {
+   stop("Input matrix must be a 2x2 table.")
+  }
+  .a <- a[1, 1]
+  .b <- a[2, 1]
+  .c <- a[1, 2]
+  .d <- a[2, 2]
+  .data.name <- deparse(substitute(a))
+ } else {
+  .a <- a
+  .b <- b
+  .c <- c
+  .d <- d
+  .data.name <- paste(deparse(substitute(a)), 
+                      deparse(substitute(b)), 
+                      deparse(substitute(c)), 
+                      deparse(substitute(d)))
+ }
+ .MAT <- matrix(c(.a, .b, M1<-.a+.b, 
+                  .c, .d, M0<-.c+.d, 
+                  N1<-.a+.c, N0<-.b+.d, Total<-.a+.b+.c+.d), 3, 3)
  colnames(.MAT) <- c("Disease","Nondisease","Total")
  rownames(.MAT) <- c("Exposed","Nonexposed","Total")
  class(.MAT) <- "table"
  print(.MAT)
- ESTIMATE <- (a*d)/(b*c)
+ ESTIMATE <- (.a*.d)/(.b*.c)
  norm.pp <- qnorm(1-(1-conf.level)/2)
  if (p.calc.by.independence) {
-  p.v <- 2*(1-pnorm(abs((a-N1*M1/Total)/sqrt(N1*N0*M1*M0/Total/Total/(Total-1)))))
+  p.v <- 2*(1-pnorm(abs((.a-N1*M1/Total)/sqrt(N1*N0*M1*M0/Total/Total/(Total-1)))))
  } else {
-  p.v <- 2*(1-pnorm(log(ifelse(ESTIMATE>1,ESTIMATE,1/ESTIMATE))/sqrt(1/a+1/b+1/c+1/d)))
+  p.v <- 2*(1-pnorm(log(ifelse(ESTIMATE>1,ESTIMATE,1/ESTIMATE))/sqrt(1/.a+1/.b+1/.c+1/.d)))
  }
- ORL <- ESTIMATE*exp(-norm.pp*sqrt(1/a+1/b+1/c+1/d))
- ORU <- ESTIMATE*exp(norm.pp*sqrt(1/a+1/b+1/c+1/d))
+ ORL <- ESTIMATE*exp(-norm.pp*sqrt(1/.a + 1/.b + 1/.c + 1/.d))
+ ORU <- ESTIMATE*exp(norm.pp*sqrt(1/.a + 1/.b + 1/.c + 1/.d))
  CINT <- c(ORL,ORU)
  attr(CINT, "conf.level") <- conf.level
  RVAL <- list(p.value=p.v, conf.int=CINT, estimate=ESTIMATE, 
   method="Odds ratio estimate and its significance probability",
-  data.name=paste(deparse(substitute(a)), deparse(substitute(b)),
-   deparse(substitute(c)), deparse(substitute(d))))
+  data.name=.data.name)
  class(RVAL) <- "htest"
  return(RVAL)
 }
@@ -263,14 +285,14 @@ Kappa.test <- function(x, y=NULL, conf.level=0.95) {
  return(RVAL2)
 }
 
-roc <- function(values,iscase) {
+roc <- function(values, iscase, maxdist=TRUE) {
  cutoffs <- unique(sort(values))
- cutoffs <- c(cutoffs,max(values)+1)
+ cutoffs <- c(cutoffs, max(values)+1)
  NSERIES <- length(cutoffs)
- sensitivity <- rep(0,NSERIES)
- falsepositive <- rep(0,NSERIES)
- dist <- rep(0,NSERIES)
- aucp <- rep(0,NSERIES)
+ sensitivity <- rep(0, NSERIES)
+ falsepositive <- rep(0, NSERIES)
+ dist <- rep(0, NSERIES)
+ aucp <- rep(0, NSERIES)
  DIS <- sum(iscase==1)
  HLT <- sum(iscase==0)
  for (i in 1:NSERIES) {
@@ -280,11 +302,12 @@ roc <- function(values,iscase) {
   NinH <- sum(iscase==0 & positives==0)
   sensitivity[i] <- PinD/DIS
   falsepositive[i] <- 1-NinH/HLT
-  dist[i] <- sqrt((PinD/DIS)^2+(NinH/HLT)^2)
+  dist[i] <- ifelse(maxdist, sqrt((PinD/DIS)^2+(NinH/HLT)^2), sqrt((1-PinD/DIS)^2+(1-NinH/HLT)^2))
   aucp[i] <- ifelse(i==1,(1-falsepositive[i])*sensitivity[i],
              (falsepositive[i-1]-falsepositive[i])*sensitivity[i])
  }
- RVAL <- list(cutoff=cutoffs,sens=sensitivity,falsepos=falsepositive,distance=dist,aucpiece=aucp)
+ RVAL <- list(cutoff=cutoffs, sens=sensitivity, falsepos=falsepositive,
+              distance=dist, aucpiece=aucp, maxdist=maxdist)
  class(RVAL) <- "roc"
  return(RVAL)
 }
@@ -293,14 +316,14 @@ print.roc <- function(x, ...) {
  cat("cutoff\tsens\t1-spec\tdist\n")
  cat(sprintf("%5.3f\t%5.3f\t%5.3f\t%5.3f\n", x[[1]],x[[2]],x[[3]],x[[4]]))
  mlcs <- paste("Fittest Cut Off:%5.3f, Sensitivity:%5.3f, Specificity:%5.3f\nAUC=%5.3f\n", ..., sep="")
- mlcc <- which.max(x[[4]])
+ mlcc <- ifelse(x[[6]], which.max(x[[4]]), which.min(x[[4]]))
  cat(sprintf(mlcs,x[[1]][mlcc],x[[2]][mlcc],1-x[[3]][mlcc],sum(x[[5]])))
  invisible(x)
 }
 
 plot.roc <- function(x, ...) {
- plot(x[[3]],x[[2]],type="l",lwd=2,xlab="1-specificity",ylab="sensitivity", ...)
- lines(c(0,1),c(0,1),lwd=1,lty=2)
+ plot(x[[3]], x[[2]], type="l", lwd=2, xlab="1-specificity", ylab="sensitivity", ...)
+ lines(c(0,1), c(0,1), lwd=1, lty=2)
  invisible(x)
 }
 

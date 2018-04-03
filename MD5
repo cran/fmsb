@@ -1,8 +1,8 @@
-e95beb9248012c064e71d2a3f73ec7a0 *DESCRIPTION
-fd5fe7597ebe7abeefb250d86e8bd48a *NAMESPACE
-55b00c000a5ceacb05c8d1e9e4abf6e9 *NEWS
-f6ff555702de7940af9e36a8a94b083e *R/demogjpn.R
-957bceb972d8afc4e4da722759649d43 *R/fmsb.R
+bb4f330b8f20d079decfa2a31618f805 *DESCRIPTION
+30c9d06e0c535d207c7575ca05409644 *NAMESPACE
+8a7a4c78c0e7d0a325aa88810fbc21ed *NEWS
+94b91b79035faec97493f3276cf90a10 *R/demogjpn.R
+d4a21d47e82956fd81478897c84a11fe *R/fmsb.R
 71866b215fce2ad705d5a93e5fe2e5ca *man/CM.Rd
 a46285392a814d5f0b1ddd5c909ee58b *man/CT.Rd
 f408752c970fd9c6dc16d29e1cddaafc *man/CaretakerRatio.Rd
@@ -16,10 +16,11 @@ b874b4d43d204c21820b5f549bbf5634 *man/JASM.Rd
 a957c2c462f3a62753227f6d4b5680da *man/Jlife.Rd
 c64ce5ed90c5b63115c2400c156d6d6d *man/Jpop.Rd
 605077745545b89373161a0b9f92fba4 *man/Jpopl.Rd
-f243f7858f3d0f1ef5cf37d8c158b323 *man/Jvital.Rd
+d68092633e5366db7f479ce7b785e6f8 *man/Jvital.Rd
 e99ec2ccfe02394e9965e952b819385e *man/Jvital2013byPref.Rd
 ad8a7d10c26a55c7468acf1886d109f2 *man/Kappatest.Rd
 33112ad38fcf222ddc830f275d2dbbce *man/Nagelkerke.Rd
+5ea155e0ae285287b5df88e9653b6c41 *man/PrefYLL2015.Rd
 ef61ee953659ffea5597c583a8c8645c *man/S60MPJ.Rd
 e7ec84a1e0f7ed452ce8628af66529f7 *man/SIQR.Rd
 09aec2f21548b29db4cfd57cb23edd59 *man/Siler.Rd
@@ -29,7 +30,7 @@ c9be3863f1db12bd2c57bf07e6accd21 *man/WhipplesIndex.Rd
 44cb1b88de15390e02bd3acae3247582 *man/gstem.Rd
 2e6487174d02ee043e316f74182f14ef *man/lifetable.Rd
 bb85b2dfdd1cc17e1067892f7bf2334f *man/mhchart.Rd
-13c66607acd3fe47d13311d6e0d43030 *man/oddsratio.Rd
+ee4e86c599810275e5583fa5881624f2 *man/oddsratio.Rd
 4d8479c358c9a4c84768ace79e7007e9 *man/pairwisefisher.Rd
 634390cba18b2d36953605173119b7b4 *man/percentile.Rd
 6a7206cb5ccaf78388f44aa55a548517 *man/pvalueplot.Rd
@@ -38,6 +39,6 @@ bfa03b46704d33dd30108bd45547ea8c *man/ratedifference.Rd
 bdc6b69c3a877a34df0d704bb5e57ea4 *man/rateratio.Rd
 9b8553b0b6261348d1208974d1c4f89a *man/riskdifference.Rd
 f3f6a878e1eea429dd24e49d9518551f *man/riskratio.Rd
-e0de9ce72fab988d4a43604b98c8eb61 *man/roc.Rd
+24eef5459bf332377f1b549684c878e1 *man/roc.Rd
 b293a3d38420f4bd192dfcdb6024de23 *man/spearman.ci.sas.Rd
 4db0c5019d21aeb38fcca6101a5a7aa1 *man/truemedian.Rd

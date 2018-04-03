@@ -1,3 +1,13 @@
+Changes to version 0.6.3
+
+	New data were added to Jvital.  PrefYLL2015 was included.
+	oddsratio() now accepts a matrix as the first argument.
+
+Changes to version 0.6.2
+
+	Added option maxdist to roc().  If maxdist=FALSE is given, 
+	distances are calculated from the best performance.
+
 Changes to version 0.6.1
 
 	Bug fix in the variable name ASMFR2015 of the Jfert dataframe.
