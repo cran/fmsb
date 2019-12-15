@@ -23,6 +23,9 @@
  \item{conf.int}{A numeric vector of length 2 to give upper/lower limit of confidence intervals.}
  \item{p.value}{The significant probability of the result of null-hypothesis testing.}
 }
+\references{
+ Rothman KJ (2012) Epidemiology: An Introduction. 2nd Ed., Oxford University Press, Oxford.
+}
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  res <- riskratio(5, 10, 90, 90)

@@ -1,3 +1,11 @@
+Changes to version 0.7.0
+
+	New functions PEI(), ORMH(), pvpORMH(), RCI(),
+	IRCI(), IRCIPois() were added.  pvalueplot() accepts
+	a new option.
+	Fixed a wrong column name in riskdifference().
+	New data (2017 and 2018) were added to Jvital.
+
 Changes to version 0.6.3
 
 	New data were added to Jvital.  PrefYLL2015 was included.

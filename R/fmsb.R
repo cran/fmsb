@@ -20,6 +20,8 @@
 #           In addition, spearman.ci.sas() was added.
 # rev. 0.6.2, 16 May 2017, Added option maxdist to roc().
 # rev. 0.6.3. 2 April 2018, oddsratio() now accept 2 by 2 matrix (Thanks to Dr. Ara).
+# rev. 0.7.0, 14 December 2019, added PEI(), ORMH(), pvpORMH(), RCI(), IRCI(), 
+#           IRCIPois(), updated pvalueplot(), fixed wrong message in riskdifference().
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -138,7 +140,7 @@ riskdifference <- function(a, b, N1, N0, CRC=FALSE, conf.level=0.95) {
   rownames(.MAT) <- c("Exposed","Unexposed","Total")
  } else {
   .MAT <- matrix(c(a, b, .M, N1, N0, .T, .R1, .R0, .RT), 3, 3)
-  colnames(.MAT) <- c("Cases","People at risk","Incidence rates")
+  colnames(.MAT) <- c("Cases","People at risk","Risk")
   rownames(.MAT) <- c("Exposed","Unexposed","Total")
  }
  class(.MAT) <- "table"
@@ -453,7 +455,7 @@ radarchart <- function(df, axistype=0, seg=4, pty=16, pcol=1:8, plty=1:6, plwd=1
   }
 }
 
-pvalueplot <- function(XTAB, plot.OR=FALSE, plot.log=FALSE, xrange=c(0.01,5)) {
+pvalueplot <- function(XTAB, plot.OR=FALSE, plot.log=FALSE, xrange=c(0.01,5), add=FALSE, ...) {
 # XTAB must be 2x2 cross table.
 # ref. Rothman KJ (2002) Epidemiology: An introduction. Oxford Univ. Press
 # ref. Rothman KJ (2012) Epidemiology: An introduction. 2nd Ed.  Oxford Univ. Press
@@ -474,7 +476,12 @@ pvalueplot <- function(XTAB, plot.OR=FALSE, plot.log=FALSE, xrange=c(0.01,5)) {
   if (plot.OR) { rval <- data.frame(OR=cOR, p.value=cpx) } else {
     rval <- data.frame(RR=cRR, p.value=cpx) }
   OpLog <- ifelse(plot.log, "x", "")
-  plot(rval, type="l", xlim=xrange, log=OpLog)  
+  if (add) {
+  	lines(rval, ...)
+  	}
+  else {
+  	plot(rval, type="l", xlim=xrange, log=OpLog, ...)
+  }
   return(rval)
 }
 
@@ -554,3 +561,69 @@ spearman.ci.sas <- function(x, y, adj.bias=TRUE, conf.level=0.95) {
   re, conf.level*100, rl, ru))
  return(list(rho=re, rho.ll=rl, rho.ul=ru, adj.bias=adj.bias))
 }
+
+# https://www.nejm.org/doi/full/10.1056/NEJM199810083391504
+# https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(05)74403-2/fulltext
+# pooled Odds Ratio (Mantel-Haenszel), Chapter 10 of Epidemiology: An Introduction
+ORMH <- function(TBL, conf.level=0.95) {
+ TT <- rowSums(TBL)
+ GG <- TBL[,1]*TBL[,4]/TT
+ HH <- TBL[,2]*TBL[,3]/TT
+ OR <- sum(GG)/sum(HH)
+ PP <- (TBL[,1]+TBL[,4])/TT
+ QQ <- (TBL[,2]+TBL[,3])/TT
+ VARlnOR <- sum(GG*PP)/(2*sum(GG)^2) + 
+  sum(GG*QQ+HH*PP)/(2*sum(GG)*sum(HH)) + sum(HH*QQ)/(2*sum(HH)^2)
+ SElnOR <- sqrt(VARlnOR)
+ ORL <- exp(log(OR)-qnorm(1-(1-conf.level)/2)*SElnOR)
+ ORU <- exp(log(OR)+qnorm(1-(1-conf.level)/2)*SElnOR)
+ return(list(estimate=OR, conf.int=c(ORL, ORU), conf.level=conf.level))
+}
+
+# p-value plot for ORMH
+pvpORMH <- function (XTAB, xrange = c(0.6, 1.2), add=FALSE, ...)
+{
+    cp <- c(1:9/1000, 1:9/100, 10:90/100, 0.9 + 1:9/100, 0.99 + 1:9/1000)
+    cl <- 1-cp
+    lu <- uu <- numeric(length(cl))
+    for (i in 1:length(cl)) {
+     res <- ORMH(XTAB, conf.level=cl[i])
+     lu[i] <- res$conf.int[1]
+     uu[i] <- res$conf.int[2]
+    }
+    cpx <- c(cp, 1, rev(cp))
+    cOR <- c(lu, res$estimate, rev(uu))
+    rval <- data.frame(OR = cOR, p.value = cpx)
+    if (add) {
+    	lines(rval, ...)
+    } else {
+	    plot(rval, type = "l", xlim = xrange, ...)
+	}
+    return(rval)
+}
+
+# risk with CI, by simple asymptotic method (Rothman)
+RCI <- function(a, N, conf.level=0.9) {
+ R <- a/N
+ Z <- qnorm(1-(1-conf.level)/2)
+ SE <- sqrt(a*(N-a)/N^3)
+ return(list(R=R, RL=R-Z*SE, RU=R+Z*SE))
+}
+
+# incidence rate with CI by simple asymptotic method (Rothman)
+IRCI <- function(a, PT, conf.level=0.9) {
+ IR <- a/PT
+ Z <- qnorm(1-(1-conf.level)/2)
+ SE <- sqrt(a/PT^2)
+ return(list(IR=IR, IRL=IR-Z*SE, IRU=IR+Z*SE))
+}
+
+# incidence rate with CI by exact method (Poisson distribution)
+# https://www.statsdirect.com/help/rates/poisson_rate_ci.htm
+IRCIPois <- function(a, PT, conf.level=0.9) {
+ IR <- a/PT
+ aL <- qchisq((1-conf.level)/2, a*2)/2
+ aU <- qchisq(1-(1-conf.level)/2, (a+1)*2)/2
+ return(list(IR=IR, IRL=aL/PT, IRU=aU/PT))
+}
+

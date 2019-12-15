@@ -32,6 +32,9 @@
 }
 \note{This function can also accept a matrix as argument, as suggested by Dr. Toshiaki Ara
  (\email{toshiaki.ara@gmail.com}).  Thanks for a good suggestion.}
+\references{
+ Rothman KJ (2012) Epidemiology: An Introduction. 2nd Ed., Oxford University Press, Oxford.
+}
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{
  res <- oddsratio(5, 10, 85, 80)
