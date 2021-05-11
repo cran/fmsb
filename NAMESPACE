@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 14 Dec 2019
+# last modified 9 May 2021
 importFrom("graphics", "arrows", "barplot", "lines", "plot", "points",
      "polygon", "rect", "segments", "stem", "text")
 importFrom("stats", "IQR", "complete.cases", "fisher.test", "fivenum",
@@ -36,6 +36,7 @@ export(SIQR,
        Jvital2013byPref,
        PrefYLL2015,
        S60MPJ,
+       H27MPJ,
        GompertzMakeham,
        fitGM,
        Siler,

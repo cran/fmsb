@@ -8,7 +8,7 @@
  rates, and so on.
 }
 \usage{ Jvital }
-\format{ A data frame with 115 observations on 17 variables.
+\format{ A data frame with 116 observations on 17 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{YEAR} \tab numeric \tab Year\cr
@@ -32,7 +32,7 @@
 }
 \details{
    Longitudinal vital statistics in Japan provided as national
-   official vital statitistics every year from 1899 to 2016,
+   official vital statitistics every year from 1899 to 2019,
    except for 1944-1946.
    
    \itemize{
@@ -56,20 +56,20 @@
    }
 }
 \source{
- \url{http://www.stat.go.jp/english/data/chouki/02.htm}
- \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai10/toukei02.html}
+ \url{https://www.mhlw.go.jp/toukei/list/dl/81-1a2.pdf}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai10/toukei02.html}
  \url{http://www.ipss.go.jp/p-info/e/psj2012/PSJ2012-05.xls}
- \url{http://www.e-stat.go.jp/SG1/estat/GL02020101.do?method=csvDownload&amp;fileId=000006490047&amp;releaseCount=1}
- \url{http://www.e-stat.go.jp/SG1/estat/Csvdl.do?sinfid=000022220050}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei12/dl/00_all.pdf}
- \url{http://www.e-stat.go.jp/SG1/estat/Csvdl.do?sinfid=000022220091}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/index.html}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei14/dl/00_all.pdf}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei15/}
- \url{https://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007722010&releaseCount=2}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei16/dl/03_h1.pdf}
- \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000031622836&fileKind=1}
+ \url{https://www.mhlw.go.jp/english/database/db-hw/vs01.html}
+ \url{https://www.e-stat.go.jp/stat-search/files/data?sinfid=000022220050&ext=csv}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei12/}
+ \url{https://www.e-stat.go.jp/stat-search/files/data?sinfid=000022220091&ext=csv}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei14/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei15/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei16/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei17/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei18/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei19/}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.

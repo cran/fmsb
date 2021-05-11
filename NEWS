@@ -1,3 +1,9 @@
+Changes to version 0.7.1
+
+   New data (2019 confirmed) were added to Jvital.
+   Tentative model population (based on smoothed 
+   H27 (2015) population) H27MPJ was added.
+
 Changes to version 0.7.0
 
 	New functions PEI(), ORMH(), pvpORMH(), RCI(),

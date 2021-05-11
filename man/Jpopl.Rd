@@ -87,9 +87,9 @@
    }
 }
 \source{
- \url{http://www.stat.go.jp/english/data/kokusei/index.htm}
- \url{http://www.stat.go.jp/english/data/chouki/02.htm}
- \url{https://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007809775&releaseCount=3}
+ \url{https://www.stat.go.jp/english/data/kokusei/index.html}
+ \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
+ \url{https://www.e-stat.go.jp/stat-search/files/data?fileid=000007809775&rcount=3}
 }
 \references{
   Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2010.

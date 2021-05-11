@@ -52,10 +52,9 @@
    }
 }
 \source{
- \url{http://www.stat.go.jp/english/data/chouki/02.htm}
- \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
- \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007718960&releaseCount=2}
- \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007809797&releaseCount=2}
+ \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
+ \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/data/chouki/zuhyou/02-29-b.xls}
+ \url{http://www.ipss.go.jp/syoushika/tohkei/Popular/P_Detail2021.asp?fname=T04-09.htm}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics. / Ministry of Internal Affairs and Communications, Statistics Bureau: Population Census.

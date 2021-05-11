@@ -64,11 +64,11 @@
    }
 }
 \source{
- \url{http://www.stat.go.jp/english/data/chouki/02.htm}
- \url{http://www.stat.go.jp/data/chouki/zuhyou/02-35.xls}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/20th/index.html}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/21th/index.html}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/22th/index.html}
+ \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
+ \url{https://warp.da.ndl.go.jp/collections/content/info:ndljp/pid/11423429/www.stat.go.jp/data/chouki/zuhyou/02-35.xls}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/life/20th/index.html}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/life/21th/index.html}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/life/22th/index.html}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Completed lifetables. / Ministry of Internal Affairs and Communications, Statistics Bureau: Historical Statistics of Japan.

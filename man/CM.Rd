@@ -26,11 +26,9 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \seealso{\link[fmsb]{CT}}
 \references{
-Coale AJ, McNeil DR (1972) The distribution by age of the frequency of first marriage in a female cohort. Journal of the American Statistical Association, 67(340): 743-749.
+Coale AJ, McNeil DR (1972) The distribution by age of the frequency of first marriage in a female cohort. Journal of the American Statistical Association, 67(340): 743-749.\doi{10.1080/01621459.1972.10481287}
 
 Newell C (1988) Methods and Models in Demography. The Guilford Press, New York.
-
-\url{http://www.jstor.org/stable/2284631}
 }
 \examples{
 # The data of Japanese population census 2010 for the whole country

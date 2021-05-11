@@ -26,8 +26,7 @@
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \references{
  Denny C (1997) A model of the probability of survival from birth. Mathematical and Computer Modelling, 26: 69-78.
- 
-\url{http://www.sciencedirect.com/science/article/pii/S0895717797001702}
+ \doi{10.1016/S0895-7177(97)00170-2}
 }
 \seealso{\link[fmsb]{Jlife}}
 \examples{

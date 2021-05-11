@@ -75,13 +75,13 @@
    }
 }
 \source{
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/life/tdfk15/dl/tdfk15-09.xls}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/life/tdfk15/dl/tdfk15-09.xls}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics with Life Expectancy 2015.
-  \url{http://minato.sip21c.org/demography/how-to-make-pref-charts.html} (in Japanese)
-  \url{http://www.who.int/whosis/whostat2006YearsOfLifeLost.pdf}
-  WHO \url{http://www.who.int/healthinfo/global_burden_disease/metrics_daly/en/} (accessed on 2 April 2018)
+  \url{https://minato.sip21c.org/demography/how-to-make-pref-charts.html} (in Japanese)
+  \url{https://www.who.int/whosis/whostat2006YearsOfLifeLost.pdf}
+  WHO \url{https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates}
 }
 \examples{
 require(fmsb)

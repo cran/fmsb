@@ -94,8 +94,8 @@
    }
 }
 \source{
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/xls/hyo.xls}
- \url{http://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/xls/sankou.xls}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/xls/hyo.xls}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei13/xls/sankou.xls}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics 2013.

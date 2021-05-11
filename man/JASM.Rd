@@ -58,10 +58,7 @@
    }
 }
 \source{
- \url{http://www.stat.go.jp/english/data/nenkan/66nenkan/index.htm}
- \url{http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001025191&amp;cycode=0}
- \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007722015&releaseCount=2}
- \url{http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_csvDownload_&fileId=000007809777&releaseCount=2}
+ \url{https://www.stat.go.jp/english/data/nenkan/66nenkan/index.html}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.
