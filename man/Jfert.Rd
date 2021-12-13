@@ -54,7 +54,7 @@
 \source{
  \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
  \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/data/chouki/zuhyou/02-29-b.xls}
- \url{http://www.ipss.go.jp/syoushika/tohkei/Popular/P_Detail2021.asp?fname=T04-09.htm}
+ \url{https://www.ipss.go.jp/syoushika/tohkei/Popular/P_Detail2021.asp?fname=T04-09.htm}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics. / Ministry of Internal Affairs and Communications, Statistics Bureau: Population Census.

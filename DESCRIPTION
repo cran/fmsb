@@ -1,17 +1,18 @@
 Package: fmsb
-Version: 0.7.1
-Date: 2021-05-09
+Version: 0.7.2
+Date: 2021-12-11
 Title: Functions for Medical Statistics Book with some Demographic Data
-Author: Minato Nakazawa <minato-nakazawa@umin.net>
-Maintainer: Minato Nakazawa <minato-nakazawa@umin.net>
+Author: Minato Nakazawa <minatonakazawa@gmail.com>
+Maintainer: Minato Nakazawa <minatonakazawa@gmail.com>
 Depends: R (>= 2.2.0)
+Suggests: Epi, vcd
 Description: Several utility functions for the book entitled 
 	"Practices of Medical and Health Data Analysis using R"
 	(Pearson Education Japan, 2007) with Japanese demographic
 	data and some demographic analysis related functions.
 License: GPL (>= 2)
-URL: http://minato.sip21c.org/msb/
+URL: https://minato.sip21c.org/msb/
 NeedsCompilation: no
-Packaged: 2021-05-10 22:15:34 UTC; MINATO NAKAZAWA
+Packaged: 2021-12-11 14:30:52 UTC; MINATO NAKAZAWA
 Repository: CRAN
-Date/Publication: 2021-05-11 07:00:03 UTC
+Date/Publication: 2021-12-13 09:10:02 UTC

@@ -7,7 +7,7 @@
  results in Japan.
 }
 \usage{ Jpop }
-\format{ A data frame with 86 observations on 57 variables.
+\format{ A data frame with 86 observations on 61 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab Factor w/86 levels \tab Ages (years old, combined for 85+)\cr
@@ -67,6 +67,10 @@
   \code{[,55]} \tab \code{F2015} \tab numeric \tab Age specific population of females in 2015\cr
   \code{[,56]} \tab \code{M2015J} \tab numeric \tab Age specific population of Japanese males in 2015\cr
   \code{[,57]} \tab \code{F2015J} \tab numeric \tab Age specific population of Japanese females in 2015\cr
+  \code{[,58]} \tab \code{M2020} \tab numeric \tab Age specific population of males in 2020\cr
+  \code{[,59]} \tab \code{F2020} \tab numeric \tab Age specific population of females in 2020\cr
+  \code{[,60]} \tab \code{M2020J} \tab numeric \tab Age specific population of Japanese males in 2020\cr
+  \code{[,61]} \tab \code{F2020J} \tab numeric \tab Age specific population of Japanese females in 2020\cr
  }
 }
 \details{
@@ -75,18 +79,19 @@
    
    \itemize{
     \item \code{Age}: Ages, combined for 85+.
-    \item \code{M1888}-\code{M2015}: Age specific number of males' population in 1988-2015.
-    \item \code{F1888}-\code{F2015}: Age specific number of females' population in 1988-2015.
-    \item \code{M2015J}, \code{F2015J}: Age specific number of the Japanese population in
-    2015 for males and females, respectively.
+    \item \code{M1888}-\code{M2020}: Age specific number of males' population in 1988-2020.
+    \item \code{F1888}-\code{F2020}: Age specific number of females' population in 1988-2020.
+    \item \code{M2015J}-\code{M2020J}: Age specific number of the Japanese population of males in 2015-2020.
+    \item \code{F2015J}-\code{F2020J}: Age specific number of the Japanese population of females in 2015-2020.
    }
 }
 \source{
  \url{https://www.stat.go.jp/english/data/kokusei/index.html}
  \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
  \url{https://www.e-stat.go.jp/stat-search/files/data?fileid=000007809775&rcount=3}
+ \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032142404&fileKind=0}
 }
 \references{
-  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2015.
+  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2020.
 }
 \keyword{datasets}

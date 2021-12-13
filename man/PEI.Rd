@@ -29,7 +29,7 @@ PEI(X, CLS, MODE)
  Kuroda T (1971) A study on population composition: Special reference to Japan. 
  (in Japanese, with abstract in English)  Journal of Population Problems
  (Jinko-Mondai-Kenkyu), No. 119: 1-12.
- \url{http://www.ipss.go.jp/syoushika/bunken/data/pdf/j119.pdf}
+ \url{https://www.ipss.go.jp/syoushika/bunken/data/pdf/j119.pdf}
 }
 \author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
 \examples{

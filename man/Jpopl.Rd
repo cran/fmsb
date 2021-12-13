@@ -7,7 +7,7 @@
  results in Japan.
 }
 \usage{ Jpopl }
-\format{ A data frame with 111 observations on 63 variables.
+\format{ A data frame with 111 observations on 67 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{Age} \tab Factor w/111 levels \tab Ages (years old, combined for 110+)\cr
@@ -73,6 +73,10 @@
   \code{[,61]} \tab \code{F2015} \tab numeric \tab Age specific population of females in 2015\cr
   \code{[,62]} \tab \code{M2015J} \tab numeric \tab Age specific population of Japanese males in 2015\cr
   \code{[,63]} \tab \code{F2015J} \tab numeric \tab Age specific population of Japanese females in 2015\cr
+  \code{[,64]} \tab \code{M2020} \tab numeric \tab Age specific population of males in 2020\cr
+  \code{[,65]} \tab \code{F2020} \tab numeric \tab Age specific population of females in 2020\cr
+  \code{[,66]} \tab \code{M2020J} \tab numeric \tab Age specific population of Japanese males in 2020\cr
+  \code{[,67]} \tab \code{F2020J} \tab numeric \tab Age specific population of Japanese females in 2020\cr
  }
 }
 \details{
@@ -80,18 +84,19 @@
    
    \itemize{
     \item \code{Age}: Ages, combined for 110+.
-    \item \code{M1888}-\code{M2015}: Age specific number of males' population in Japan for 1888-2015.
-    \item \code{F1888}-\code{F2015}: Age specific number of females' population in Japan for 1888-2015.
-    \item \code{M2000J}-\code{M2015J}: Age specific number of Japanese males' population in Japan for 2000-2015 by every 5 years.
-    \item \code{F2000J}-\code{F2015J}: Age specific number of Japanese females' population in Japan for 2000-2015 by every 5 years.
+    \item \code{M1888}-\code{M2020}: Age specific number of males' population in Japan for 1888-2020.
+    \item \code{F1888}-\code{F2020}: Age specific number of females' population in Japan for 1888-2020.
+    \item \code{M2000J}-\code{M2020J}: Age specific number of Japanese males' population in Japan for 2000-2020 by every 5 years.
+    \item \code{F2000J}-\code{F2020J}: Age specific number of Japanese females' population in Japan for 2000-2020 by every 5 years.
    }
 }
 \source{
  \url{https://www.stat.go.jp/english/data/kokusei/index.html}
  \url{https://warp.da.ndl.go.jp/info:ndljp/pid/1334623/www.stat.go.jp/english/data/chouki/02.htm}
  \url{https://www.e-stat.go.jp/stat-search/files/data?fileid=000007809775&rcount=3}
+ \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032142404&fileKind=0}
 }
 \references{
-  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2010.
+  Statistics Bureau, Ministry of Internal Affairs and Communications: Population Census, 1888-2020.
 }
 \keyword{datasets}
