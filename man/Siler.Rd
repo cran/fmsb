@@ -25,7 +25,7 @@
  Siler() returns model qx for the same length with t.
  fitSiler() returns the numeric vector of fitted parameters a1, b1, a2, a3 and b3, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jlife}}
 \examples{
  res <- fitSiler(,Jlife$qx2005M)

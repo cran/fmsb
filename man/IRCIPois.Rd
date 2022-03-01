@@ -20,7 +20,7 @@ Calculate incidence rate with its confidence
 \references{
  \url{https://www.statsdirect.com/help/rates/poisson_rate_ci.htm}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
 IRCIPois(8, 85000)
 }

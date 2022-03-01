@@ -22,7 +22,7 @@
 \references{
  Rothman KJ (2012) Epidemiology: An Introduction. 2nd Ed., Oxford University Press, Oxford.
 }
-\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
  res <- rateratio(136, 1709, 22050, 127650)
  str(res)

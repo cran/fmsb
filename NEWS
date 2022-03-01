@@ -1,3 +1,9 @@
+Changes to version 0.7.3
+
+   New data (2020 confirmed vital statistics) were added to Jvital.
+   The functions spearman.ci.sas(), truemedian() and geary.test() now
+   properly treat the data including missing values.
+
 Changes to version 0.7.2
 
    New data (2020 census) were added to Jpop and Jpopl.

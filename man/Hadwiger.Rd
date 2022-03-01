@@ -21,7 +21,7 @@
  Hadwiger() returns model ASFR for ages from 15 to 54.
  fitHad() returns the numeric vector of fitted parameters a, b and c, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
 Chandola T, Coleman DA, Horns RW (1999) Recent European fertility patterns:
 fitting curves to 'distorted' distributions. Population Studies, 53(3): 317-329. \doi{10.1080/00324720308089}

@@ -12,7 +12,7 @@
  \item{statistic}{Geary's test statistic G}
  \item{p.value}{The significant probability of the null-hypothesis testing.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
  geary.test(rnorm(100))
  geary.test(20:50)

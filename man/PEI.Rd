@@ -31,7 +31,7 @@ PEI(X, CLS, MODE)
  (Jinko-Mondai-Kenkyu), No. 119: 1-12.
  \url{https://www.ipss.go.jp/syoushika/bunken/data/pdf/j119.pdf}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
 # Prefectural population estimates in 2018 (unit=1000 persons)
 # total of males and females, by 5 year age-class

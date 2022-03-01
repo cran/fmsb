@@ -20,7 +20,7 @@
  CT() returns model ASMFR for ages from 12 to 49.
  fitCT() returns the numeric vector of fitted parameters M and m, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \seealso{\link[fmsb]{Jfert}}
 \references{
 Coale AJ, Trussell TJ (1978) Technical Note: Finding the Two Parameters That Specify a Model Schedule of Marital Fertility.  Population Index, 44(2): 203-213.

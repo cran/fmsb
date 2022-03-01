@@ -4,6 +4,7 @@
 \description{
  Calculate Spearman's rank correlation with its 
  confidence intervals by the same method as SAS.
+ Since fmsb-0.7.3, missing values are excluded pairwisely before calculation.
 }
 \usage{ spearman.ci.sas(x, y, adj.bias=TRUE, conf.level=0.95) }
 \arguments{
@@ -18,9 +19,9 @@
  \item{rho.ul}{The upper limit of given confidence intervals.}
  \item{adj.bias}{The option for bias adjustment taken.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
- \url{http://support.sas.com/documentation/cdl/en/procstat/63104/HTML/default/corr_toc.htm}
+ \url{https://support.sas.com/documentation/cdl/en/procstat/63104/HTML/default/viewer.htm#corr_toc.htm}
 }
 \examples{
  data(airquality)

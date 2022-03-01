@@ -21,7 +21,7 @@
 \references{
  Grimm LG (1993) Statistical Applications for the Behavioral Sciences. John Wiley and Sons.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
  median(c(3, 3, 4, 4, 4))
  truemedian(c(3, 3, 4, 4, 4))

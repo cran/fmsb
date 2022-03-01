@@ -24,7 +24,7 @@
 \references{
  Rothman KJ (2012) Epidemiology: An Introduction. 2nd Ed., Oxford University Press, Oxford.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
 # Table 10-6 of Rothman's textbook (Chapter 10).
 ORMH(matrix(c(3, 9, 104, 1059, 1, 3, 5, 86), 2, 4, byrow=TRUE), conf.level=0.9)

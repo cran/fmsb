@@ -23,7 +23,7 @@
  Denny() returns model lx for the same length with t.
  fitDenny() returns the numeric vector of fitted parameters a, b, and c, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
  Denny C (1997) A model of the probability of survival from birth. Mathematical and Computer Modelling, 26: 69-78.
  \doi{10.1016/S0895-7177(97)00170-2}

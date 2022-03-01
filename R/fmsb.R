@@ -22,6 +22,8 @@
 # rev. 0.6.3. 2 April 2018, oddsratio() now accept 2 by 2 matrix (Thanks to Dr. Ara).
 # rev. 0.7.0, 14 December 2019, added PEI(), ORMH(), pvpORMH(), RCI(), IRCI(), 
 #           IRCIPois(), updated pvalueplot(), fixed wrong message in riskdifference().
+# rev. 0.7.3, 1 March 2020, spearman.ci.sas(), truemedian() and geary.test() now 
+#           can properly treat data with missing values.
 
 SIQR <- function(X, mode=1) { 
  if (mode==1) { ret <- (fivenum(X)[4]-fivenum(X)[2])/2 }
@@ -30,6 +32,7 @@ SIQR <- function(X, mode=1) {
 }
 
 truemedian <- function(X, h=1) { 
+   X <- subset(X, !is.na(X))
    YY <- rep(0,length(X))
    XX <- table(X)
    q <- length(XX)
@@ -45,12 +48,14 @@ truemedian <- function(X, h=1) {
 }
 
 geary.test <- function(X) {
+ dname <- deparse(substitute(X))
+ X <- subset(X, !is.na(X))
  m.X <- mean(X)
  l.X <- length(X)
  G <- sum(abs(X-m.X))/sqrt(l.X*sum((X-m.X)^2))
  p <- pnorm((G-sqrt(2/pi))/sqrt(1-3/pi)*sqrt(l.X))
  RVAL <- list(statistic = c(G = G), p.value = p, method = "Geary's normality test", 
-        data.name = deparse(substitute(X)))
+        data.name = dname)
     class(RVAL) <- "htest"
     return(RVAL)
 }
@@ -542,6 +547,11 @@ mhchart <- function(LIST, XLIM=c(15,45), COL="black", FILL="white", BWD=1, ...) 
 # the SAS method.
 # http://support.sas.com/documentation/cdl/en/procstat/63104/HTML/default/corr_toc.htm
 spearman.ci.sas <- function(x, y, adj.bias=TRUE, conf.level=0.95) {
+ NAMEX <- deparse(substitute(x))
+ NAMEY <- deparse(substitute(y))
+ xx <- subset(x, !is.na(x)&!is.na(y))
+ y <- subset(y, !is.na(x)&!is.na(y))
+ x <- xx
  n <- length(x)
  rx <- rank(x)
  ry <- rank(y)
@@ -557,9 +567,10 @@ spearman.ci.sas <- function(x, y, adj.bias=TRUE, conf.level=0.95) {
  rl <- (exp(2*gl)-1)/(exp(2*gl)+1)
  re <- (exp(2*ge)-1)/(exp(2*ge)+1)
  ru <- (exp(2*gu)-1)/(exp(2*gu)+1)
- print(sprintf("rho = %5.3f, %2d%% conf.int = [ %5.3f, %5.3f ]",
-  re, conf.level*100, rl, ru))
- return(list(rho=re, rho.ll=rl, rho.ul=ru, adj.bias=adj.bias))
+ cat(sprintf("Spearman's rank correlation between %s and %s\n", NAMEX, NAMEY))
+ cat(sprintf("N= %d, rho = %5.3f, %2d%% conf.int = [ %5.3f, %5.3f ]\n",
+  n, re, conf.level*100, rl, ru))
+ return(list(X=NAMEX, Y=NAMEY, N=n, rho=re, rho.ll=rl, rho.ul=ru, adj.bias=adj.bias))
 }
 
 # https://www.nejm.org/doi/full/10.1056/NEJM199810083391504

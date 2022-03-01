@@ -9,7 +9,7 @@
 \value{
  Single numeric value of Cronbach's alpha.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{Bland JM, Altman DG (1997) Statistics notes: Cronbach's alpha. BMJ, 314: 572.}
 \examples{
  QUEST <- data.frame(

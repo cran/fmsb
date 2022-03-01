@@ -10,13 +10,13 @@
  \item{N}{The number of observations in which the model were fitted.}
  \item{R2}{Nagelkerke's R squared.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
 Nagelkerke N (1991) A note on a general definition of the coefficient of determination. Biometrika, 78: 691-692.
 
 Faraway JJ (2006) Extending the linear models with R: Generalized linear, mixed effects and nonparametric regression models. Chapman and Hall.
 
-\url{http://minato.sip21c.org/grad/infop-text2012.pdf}
+\url{https://minato.sip21c.org/grad/infop-text2012.pdf}
 }
 \examples{
  res <- glm(cbind(ncases,ncontrols) ~ agegp+alcgp+tobgp, data=esoph, family=binomial())

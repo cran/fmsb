@@ -41,7 +41,7 @@
 \value{
  No value is returned.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
 # Data must be given as the data frame, where the first cases show maximum.
 maxmin <- data.frame(

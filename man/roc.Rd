@@ -20,7 +20,7 @@
  \item{aucpiece}{The numeric vector of the pieces of areas under the curve.}
  \item{maxdist}{Same as the given argument maxdist.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \seealso{\link[Epi]{ROC}}
 \examples{
  scores <- c(15, 20, 19, 28, 26, 17, 13, 22, 23, 24)

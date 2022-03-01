@@ -8,7 +8,7 @@
  rates, and so on.
 }
 \usage{ Jvital }
-\format{ A data frame with 116 observations on 17 variables.
+\format{ A data frame with 119 observations on 19 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{YEAR} \tab numeric \tab Year\cr
@@ -25,14 +25,16 @@
   \code{[,12]} \tab \code{DR} \tab numeric \tab Divorce rates of Japan\cr
   \code{[,13]} \tab \code{TFR} \tab numeric \tab Total fertility rates of Japan\cr
   \code{[,14]} \tab \code{ASMRM} \tab numeric \tab Age-standardized mortality rates of males in Japan\cr
-  \code{[,15]} \tab \code{ASMRF} \tab numeric \tab Age-standardized mortality rates of females in Japan\cr
-  \code{[,16]} \tab \code{PNMPLB} \tab numeric \tab Perinatal mortalities per live births of Japan\cr
-  \code{[,17]} \tab \code{MMR} \tab numeric \tab Maternal mortality rates per 100000 births in Japan\cr
+  \code{[,15]} \tab \code{ASMRM2} \tab numeric \tab Age-standardized mortality rates of males in Japan using new model population 2015\cr
+  \code{[,16]} \tab \code{ASMRF} \tab numeric \tab Age-standardized mortality rates of females in Japan\cr
+  \code{[,17]} \tab \code{ASMRF2} \tab numeric \tab Age-standardized mortality rates of females in Japan using new model population 2015\cr
+  \code{[,18]} \tab \code{PNMPLB} \tab numeric \tab Perinatal mortalities per live births of Japan\cr
+  \code{[,19]} \tab \code{MMR} \tab numeric \tab Maternal mortality rates per 100000 births in Japan\cr
  }
 }
 \details{
    Longitudinal vital statistics in Japan provided as national
-   official vital statitistics every year from 1899 to 2019,
+   official vital statitistics every year from 1899 to 2020,
    except for 1944-1946.
    
    \itemize{
@@ -49,8 +51,10 @@
     \item \code{MR}: Marital rate.  The number of marriages / mid-year population 1000.
     \item \code{DR}: Divorce rate.  The number of divorces / mid-year population 1000.
     \item \code{TFR}: Total fertility rate.  The sum of age-specific fertility rates, which is the number of births divided by the number of women's population for each age.
-    \item \code{ASMRM}: Age-standardized mortality rate of males, per mid-year population 1000, where the standard population is the model population in 1985.
-    \item \code{ASMRF}: Age-standardized mortality rate of females, per mid-year population 1000, where the standard population is the model population in 1985.
+    \item \code{ASMRM}: Age-standardized mortality rate of males, per mid-year population 1000, where the standard population is the model population in 1985 (\code{S60MPJ}).
+    \item \code{ASMRM2}: Age-standardized mortality rate of males, per mid-year population 1000, where the standard population is the model population in 2015 (\code{H27MPJ}).
+    \item \code{ASMRF}: Age-standardized mortality rate of females, per mid-year population 1000, where the standard population is the model population in 1985 (\code{S60MPJ}).
+    \item \code{ASMRF2}: Age-standardized mortality rate of females, per mid-year population 1000, where the standard population is the model population in 2015 (\code{H27MPJ}).
     \item \code{PNMPLB}: Perinatal mortality per live birth.  [(Number of stillbirths after gestational age 28 weeks) + (Number of early neonatal deaths within a week after birth)] per 1000 live births (Note: the denominator does not include stillbirths!).  This definition stood until 1994, but \code{PNMPLB} also includes values after 1995, for comparison.
     \item \code{MMR}: Maternal mortality rate (actually ratio) per birth.  (Number of maternal deaths during pregnancy or postpartum periods within 42 days [90 days until 1978] after the delivery due to reproduction-related causes) / (Number of total births = live births + stillbirths)* 100,000.
    }
@@ -70,10 +74,13 @@
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei17/}
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei18/}
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei19/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei20/}
+ \url{https://www.ipss.go.jp/syoushika/tohkei/Popular/P_Detail2021.asp?fname=T05-28.htm}
+ \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032119349&fileKind=1}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.
 
-  National Institude for Population and Social Security Research: Table 5-28 of Population Statistics of Japan 2012.
+  National Institude for Population and Social Security Research: Table 5-28 of Population Statistics of Japan 2019.
 }
 \keyword{datasets}

@@ -23,7 +23,7 @@
  CM() returns model schedule of nupitiality for ages from 10 to 60 as a list, composed of g (the numeric vector for the probability of first marriage happening for each age), G (the numeric vector for the proportion ever married by each age), mu (mean age of first marriage among total population), and sigma (standard deviation of the ages of first marriage).
  fitCM() returns the numeric vector of fitted parameters C, a0 and k, RMSE for those values, and the flag of convergence.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \seealso{\link[fmsb]{CT}}
 \references{
 Coale AJ, McNeil DR (1972) The distribution by age of the frequency of first marriage in a female cohort. Journal of the American Statistical Association, 67(340): 743-749.\doi{10.1080/01621459.1972.10481287}
@@ -33,7 +33,7 @@ Newell C (1988) Methods and Models in Demography. The Guilford Press, New York.
 \examples{
 # The data of Japanese population census 2010 for the whole country
 # The proportion of ever married females for ages from 15 to 60.
-# http://www.e-stat.go.jp/SG1/estat/List.do?bid=000001034991&cycode=0
+# https://www.e-stat.go.jp/SG1/estat/List.do?bid=000001034991&cycode=0
  Ages <- 15:60
  EverMarriedFemales <-  c(0.003081039, 0.003203058, 0.006502558,
  0.014261608, 0.028378604, 0.048903318, 0.07596101, 0.110311095, 

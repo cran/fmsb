@@ -23,7 +23,7 @@ Until fmsb-0.4.2, the formula to calculate p-values was not appropriate, so that
 \references{
  Rothman KJ (2012) Epidemiology: An Introduction. 2nd Ed., Oxford University Press, Oxford.
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \examples{
 pvalueplot(matrix(c(321, 411, 686-321, 689-411), 2, 2), xrange=c(0.7, 0.9))
 pvalueplot(matrix(c(4, 386, 4, 1250), 2, 2), xrange=c(0.1, 20), plot.log=TRUE)

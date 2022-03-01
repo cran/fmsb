@@ -65,7 +65,7 @@
  \item{Tx}{Lifetable function Tx, which means person-years lived above age x.}
  \item{ex}{Lifetable function ex, which means expectation of life at age x.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
  Preston SH, Heuveline P, Guillot M (2001) Demography: Measuring and Modeling 
  Population Processes.  Blackwell Publishing, Oxford.

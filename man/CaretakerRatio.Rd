@@ -15,7 +15,7 @@
 \value{
  \item{CR}{ Caretaker Ratio.}
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
  Preston SH, Heuveline P, Guillot M (2001) Demography: Measuring and Modeling 
  Population Processes.  Blackwell Publishing, Oxford.

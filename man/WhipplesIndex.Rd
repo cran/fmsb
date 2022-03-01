@@ -14,7 +14,7 @@
  \item{WI}{ The Whipple's Index. }
  \item{JUDGE}{ Based on Whipple's Index, accuracy of age-reporting is judged. }
 }
-\author{Minato Nakazawa \email{minato-nakazawa@umin.net} \url{http://minato.sip21c.org/}}
+\author{Minato Nakazawa \email{minatonakazawa@gmail.com} \url{https://minato.sip21c.org/}}
 \references{
  Preston SH, Heuveline P, Guillot M (2001) Demography: Measuring and Modeling 
  Population Processes.  Blackwell Publishing, Oxford.
@@ -22,7 +22,11 @@
  Newell C (1988) Methods and Models in Demography.  The Guilford Press, New York.
  
  Rowland DT (2003) Demographic methods and concepts. Oxford Univ. Press, Oxford.
+
+ Ministry of Home Affairs, India (2011) 2011 Census C-13. \url{https://censusindia.gov.in/2011census/C-series/C-13.html}
 }
 \examples{
  WhipplesIndex(Jpop$M2000)
+ India <- read.delim("https://minato.sip21c.org/ldaR/India2011census.txt")
+ WhipplesIndex(India$Males)
 }
