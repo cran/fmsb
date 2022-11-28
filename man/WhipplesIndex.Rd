@@ -23,7 +23,7 @@
  
  Rowland DT (2003) Demographic methods and concepts. Oxford Univ. Press, Oxford.
 
- Ministry of Home Affairs, India (2011) 2011 Census C-13. \url{https://censusindia.gov.in/2011census/C-series/C-13.html}
+ Ministry of Home Affairs, India (2011) 2011 Census C-13. \url{https://censusindia.gov.in/nada/index.php/catalog/22542/download/25673/PC01_C13_00.xls}
 }
 \examples{
  WhipplesIndex(Jpop$M2000)

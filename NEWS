@@ -1,3 +1,8 @@
+Changes to version 0.7.4
+
+   New data (23rd complete life table of Japan) were added to Jlife.
+   New data (Age specific fertility rates and marital fertility rates in 2020) were added to Jfert.
+
 Changes to version 0.7.3
 
    New data (2020 confirmed vital statistics) were added to Jvital.

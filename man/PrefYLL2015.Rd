@@ -79,8 +79,7 @@
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics with Life Expectancy 2015.
-  \url{https://minato.sip21c.org/demography/how-to-make-pref-charts.html} (in Japanese)
-  \url{https://www.who.int/whosis/whostat2006YearsOfLifeLost.pdf}
+  \url{https://minato.sip21c.org/demography/how-to-make-pref-charts.html} (in Japanese), 
   WHO \url{https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates}
 }
 \examples{
