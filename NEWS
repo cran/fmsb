@@ -1,3 +1,7 @@
+Changes to version 0.7.5
+
+	New data (Prefe0, PrefYLL2010, PrefYLL2020) based on vital statistics by prefecture were added.
+
 Changes to version 0.7.4
 
    New data (23rd complete life table of Japan) were added to Jlife.
