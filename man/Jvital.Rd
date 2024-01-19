@@ -8,7 +8,7 @@
  rates, and so on.
 }
 \usage{ Jvital }
-\format{ A data frame with 119 observations on 19 variables.
+\format{ A data frame with 121 observations on 19 variables.
 
  \tabular{rlll}{
   \code{[, 1]} \tab \code{YEAR} \tab numeric \tab Year\cr
@@ -34,7 +34,7 @@
 }
 \details{
    Longitudinal vital statistics in Japan provided as national
-   official vital statitistics every year from 1899 to 2020,
+   official vital statitistics every year from 1899 to 2022,
    except for 1944-1946.
    
    \itemize{
@@ -75,8 +75,10 @@
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei18/}
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei19/}
  \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei20/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei21/}
+ \url{https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei22/}
  \url{https://www.ipss.go.jp/syoushika/tohkei/Popular/P_Detail2021.asp?fname=T05-28.htm}
- \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032119349&fileKind=1}
+ \url{https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040098325&fileKind=1}
 }
 \references{
   Ministry of Health, Labor and Welfare of Japan: Vital Statistics.

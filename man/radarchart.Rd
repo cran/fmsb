@@ -1,13 +1,20 @@
 \name{radarchart}
 \alias{radarchart}
+\alias{radarchartcirc}
 \title{Drawing radar chart (a.k.a. spider plot)}
 \description{
  Drawing the radar chart with several lines from a data frame, 
  which must be composed of more than 3 variables as axes and the 
  rows indicate cases as series.
+ The radatchart() uses the polygons as radar grid, radarchartcirc()
+ uses circles as radar grid.
 }
 \usage{
  radarchart(df, axistype, seg, pty, pcol, plty, plwd, pdensity, pangle, pfcol, 
+ cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, centerzero, 
+ vlabels, vlcex, caxislabels, calcex, paxislabels, palcex, ...)
+
+ radarchartcirc(df, axistype, seg, pty, pcol, plty, plwd, pdensity, pangle, pfcol, 
  cglty, cglwd, cglcol, axislabcol, title, maxmin, na.itp, centerzero, 
  vlabels, vlcex, caxislabels, calcex, paxislabels, palcex, ...)
 }
@@ -22,7 +29,7 @@
  \item{pdensity}{A vector of filling density of polygons: Default NULL, which is repeatedly used.}
  \item{pangle}{A vector of the angles of lines used as filling polygons: Default 45, which is repeatedly used.}
  \item{pfcol}{A vector of color codes for filling polygons: Default NA, which is repeatedly usd.}
- \item{cglty}{Line type for radar grids: Default 3, which means dotted line.}
+ \item{cglty}{Line type for radar grids: Default 3, dotted line.  For radatchartcirc(), default 1, solid line.}
  \item{cglwd}{Line width for radar grids: Default 1, which means thinnest line.}
  \item{cglcol}{Line color for radar grids: Default "navy"}
  \item{axislabcol}{Color of axis label and numbers: Default "blue"}
@@ -59,16 +66,22 @@ dat <- data.frame(
  psycho=c(0.5, NA, 3),
  social=runif(3, 1, 5),
  env=c(5, 2.5, 4))
-dat <- rbind(maxmin,dat)
-op <- par(mar=c(1, 2, 2, 1),mfrow=c(2, 2))
-radarchart(dat, axistype=1, seg=5, plty=1, vlabels=c("Total\nQOL", "Physical\naspects", 
- "Phychological\naspects", "Social\naspects", "Environmental\naspects"), 
+dat <- rbind(maxmin, dat)
+VARNAMES <- c("Total\nQOL", "Physical\naspects", "Phychological\naspects", 
+ "Social\naspects", "Environmental\naspects")
+op <- par(mar=c(1, 2, 2, 1), mfrow=c(2, 3))
+radarchart(dat, axistype=1, seg=5, plty=1, vlabels=VARNAMES, 
  title="(axis=1, 5 segments, with specified vlabels)", vlcex=0.5)
 radarchart(dat, axistype=2, pcol=topo.colors(3), plty=1, pdensity=c(5, 10, 30), 
  pangle=c(10, 45, 120), pfcol=topo.colors(3), 
- title="(topo.colors, fill, axis=2)")
+ title="(topo.colors, fill with hatching, axis=2)")
+radarchart(dat, axistype=2, pcol=topo.colors(3), plty=1, 
+ pfcol=adjustcolor(topo.colors(3), 0.3), 
+ title="(topo.colors, fill with transparency, axis=2)")
 radarchart(dat, axistype=3, pty=32, plty=1, axislabcol="grey", na.itp=FALSE,
  title="(no points, axis=3, na.itp=FALSE)")
+radarchartcirc(dat, axistype=3, pty=32, plty=1, axislabcol="grey", na.itp=FALSE,
+ title="(no points, axis=3, na.itp=FALSE, circular radar grid)")
 radarchart(dat, axistype=1, plwd=1:5, pcol=1, centerzero=TRUE, 
  seg=4, caxislabels=c("worst", "", "", "", "best"),
  title="(use lty and lwd but b/w, axis=1,\n centerzero=TRUE, with centerlabels)")

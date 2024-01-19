@@ -1,5 +1,5 @@
 # NAMESPACE file of fmsb by Minato Nakazawa
-# last modified 11 December 2021
+# last modified 16 January 2024
 importFrom("graphics", "arrows", "barplot", "lines", "plot", "points",
      "polygon", "rect", "segments", "stem", "text")
 importFrom("stats", "IQR", "complete.cases", "fisher.test", "fivenum",
@@ -23,6 +23,7 @@ export(SIQR,
        VIF,
        percentile,
        radarchart,
+       radarchartcirc,
        pvalueplot,
        pairwise.fisher.test,
        mhchart,
@@ -76,7 +77,11 @@ export(SIQR,
        pvpORMH,
        RCI,
        IRCI,
-       IRCIPois)
+       IRCIPois,
+       RDMH,
+       RRMH,
+       IRDMH,
+       IRRMH)
 
 # methods
     

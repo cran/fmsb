@@ -1,6 +1,6 @@
 Package: fmsb
-Version: 0.7.5
-Date: 2022-12-25
+Version: 0.7.6
+Date: 2024-1-16
 Title: Functions for Medical Statistics Book with some Demographic Data
 Author: Minato Nakazawa <minatonakazawa@gmail.com>
 Maintainer: Minato Nakazawa <minatonakazawa@gmail.com>
@@ -13,6 +13,6 @@ Description: Several utility functions for the book entitled
 License: GPL (>= 2)
 URL: https://minato.sip21c.org/msb/
 NeedsCompilation: no
-Packaged: 2022-12-25 13:38:07 UTC; minat
+Packaged: 2024-01-19 06:32:26 UTC; minat
 Repository: CRAN
-Date/Publication: 2023-01-05 21:50:40 UTC
+Date/Publication: 2024-01-19 10:10:02 UTC

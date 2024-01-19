@@ -1,3 +1,9 @@
+Changes to version 0.7.6
+
+    New data (2022 confirmed vital statistics) were added to Jvital.
+    radarchartcirc(), RDMH(), RRMH(), IRDMH(), and IRRMH() were added.
+    radarchartcirc() is a circular complementary line version of radarchart().
+
 Changes to version 0.7.5
 
 	New data (Prefe0, PrefYLL2010, PrefYLL2020) based on vital statistics by prefecture were added.

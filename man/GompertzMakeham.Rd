@@ -10,9 +10,9 @@
  fitGM(initialpar=c(0.01, 0.0003, 0.07), data, mode=1, Method="Nelder-Mead", ...)
 }
 \arguments{
- \item{A}{The parameter A of the Gompertz-Makeham model u(t)=A*exp{B*t}+C.}
- \item{B}{The parameter B of the Gompertz-Makeham model u(t)=A*exp{B*t}+C.}
- \item{C}{The parameter C of the Gompertz-Makeham model u(t)=A*exp{B*t}+C.}
+ \item{A}{The parameter A of the Gompertz-Makeham model u(t)=A*exp(B*t)+C.}
+ \item{B}{The parameter B of the Gompertz-Makeham model u(t)=A*exp(B*t)+C.}
+ \item{C}{The parameter C of the Gompertz-Makeham model u(t)=A*exp(B*t)+C.}
  \item{t}{Age (vector OK) in years}
  \item{initialpar}{Initial value for the parameters to be estimated.  If not given, c(0.01, 0.0003, 0.07) is used.}
  \item{data}{Actual vector of qx in the lifetable to be used to obtain the best-fit parameters of the Gompertz-Makeham model.}
